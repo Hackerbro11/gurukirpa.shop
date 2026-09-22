@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kitchen & Owner Dashboard | Guru Kirpa Fast Food</title>
+  <link rel="stylesheet" href="/css/custom.css">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              gold: '#F59E0B',
+              darkgold: '#D97706',
+              dark: '#0A0A0C',
+              card: '#141417',
+              border: '#27272A',
+              veg: '#10B981'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-brand-dark text-gray-100 min-h-screen flex flex-col font-sans">
+
+  <!-- PIN Protection Lock Modal -->
+  <div id="pin-lock-modal" class="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4">
+    <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-6 sm:p-8 max-w-sm w-full text-center shadow-2xl space-y-5">
+      <div class="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mx-auto">
+        <i data-lucide="lock" class="w-8 h-8 text-amber-400"></i>
+      </div>
+      <div>
+        <h3 class="text-xl font-black text-white">Guru Kirpa Kitchen Admin</h3>
+        <p class="text-xs text-gray-400 mt-1">Enter 4-digit PIN to access live dashboard</p>
+      </div>
+      
+      <div class="space-y-3">
+        <input type="password" id="admin-pin-input" maxlength="6" placeholder="Enter Security PIN" onkeydown="if(event.key==='Enter') verifyAdminPIN()" class="w-full bg-zinc-900 border border-zinc-700 text-center text-2xl tracking-widest font-mono text-amber-400 rounded-xl py-3 focus:outline-none focus:border-amber-500">
+        <p id="pin-error-text" class="text-xs text-red-400 hidden">Incorrect PIN. Please try again.</p>
+        <button onclick="verifyAdminPIN()" class="w-full gold-glow-btn text-black font-extrabold py-3 rounded-xl text-sm">
+          Unlock Dashboard
+        </button>
+      </div>
+      <p class="text-[11px] text-gray-500">Authorized Kitchen Staff Only • Guru Kirpa KDS</p>
+    </div>
+  </div>
+
+  <!-- Dashboard Top Navbar -->
+  <header class="sticky top-0 z-40 bg-zinc-950/95 backdrop-blur-md border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-3 flex flex-wrap items-center justify-between gap-3">
+      
+      <!-- Brand & Status -->
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center">
+          <span class="text-xl">👨‍🍳</span>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="text-lg font-black text-white">GURU KIRPA</h1>
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500 text-black">KITCHEN KDS</span>
+          </div>
+          <p class="text-xs text-amber-400/80">Live Orders & Store Management</p>
+        </div>
+      </div>
+
+      <!-- Action Toggles -->
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        
+        <!-- Audio Alert Status & Test Sound -->
+        <button onclick="toggleAudioAlerts()" id="audio-alert-btn" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-700 text-xs font-semibold text-emerald-400 hover:bg-zinc-800 transition">
+          <i data-lucide="volume-2" class="w-4 h-4"></i>
+          <span id="audio-status-label">Sound: ON</span>
+        </button>
+
+        <button onclick="playTestChime()" title="Test Order Bell Sound" class="px-2.5 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-amber-400 text-xs font-semibold">
+          🔔 Test Bell
+        </button>
+
+        <!-- Delivery Partner / Rider App Link -->
+        <a href="/delivery" target="_blank" class="flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-xs text-emerald-400 font-semibold transition">
+          <i data-lucide="bike" class="w-3.5 h-3.5 text-emerald-400"></i>
+          <span>Rider App</span>
+        </a>
+
+        <!-- View Customer Site -->
+        <a href="/" target="_blank" class="flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-xs text-gray-300 transition">
+          <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          <span class="hidden sm:inline">Customer Menu</span>
+        </a>
+
+        <!-- Lock Dashboard -->
+        <button onclick="lockDashboard()" class="p-2 rounded-lg bg-zinc-900 hover:bg-red-950/40 text-gray-400 hover:text-red-400 border border-zinc-800 transition">
+          <i data-lucide="log-out" class="w-4 h-4"></i>
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Sub Navigation Tabs -->
+    <div class="border-t border-brand-border bg-zinc-900/50 px-4 sm:px-8">
+      <div class="max-w-7xl mx-auto flex items-center space-x-6 overflow-x-auto text-xs font-bold py-2.5 no-scrollbar">
+        <button onclick="switchTab('orders')" id="tab-btn-orders" class="admin-tab active text-amber-400 border-b-2 border-amber-500 pb-1 flex items-center space-x-1.5">
+          <i data-lucide="bell" class="w-4 h-4"></i>
+          <span>Live Orders Feed</span>
+          <span id="pending-count-pill" class="bg-red-600 text-white text-[10px] px-1.5 py-0.2 rounded-full font-black ml-1">0</span>
+        </button>
+
+        <button onclick="switchTab('menu')" id="tab-btn-menu" class="admin-tab text-gray-400 hover:text-gray-200 pb-1 flex items-center space-x-1.5 transition">
+          <i data-lucide="utensils" class="w-4 h-4"></i>
+          <span>Menu & Stock Toggle</span>
+        </button>
+
+        <button onclick="switchTab('analytics')" id="tab-btn-analytics" class="admin-tab text-gray-400 hover:text-gray-200 pb-1 flex items-center space-x-1.5 transition">
+          <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+          <span>Daily Sales & Reports</span>
+        </button>
+
+        <button onclick="switchTab('reviews')" id="tab-btn-reviews" class="admin-tab text-gray-400 hover:text-gray-200 pb-1 flex items-center space-x-1.5 transition">
+          <i data-lucide="star" class="w-4 h-4 text-amber-400"></i>
+          <span>Customer Reviews</span>
+        </button>
+
+        <button onclick="switchTab('settings')" id="tab-btn-settings" class="admin-tab text-gray-400 hover:text-gray-200 pb-1 flex items-center space-x-1.5 transition">
+          <i data-lucide="settings" class="w-4 h-4"></i>
+          <span>Store Settings</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Metrics Ribbon -->
+  <section class="bg-zinc-900/30 border-b border-brand-border py-3 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-3">
+      
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-3 flex items-center justify-between">
+        <div>
+          <p class="text-[10px] font-bold text-gray-400 uppercase">Today's Sales</p>
+          <p class="text-lg font-black text-amber-400" id="stat-sales">₹0</p>
+        </div>
+        <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center">₹</div>
+      </div>
+
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-3 flex items-center justify-between">
+        <div>
+          <p class="text-[10px] font-bold text-gray-400 uppercase">Total Orders Today</p>
+          <p class="text-lg font-black text-white" id="stat-orders">0</p>
+        </div>
+        <div class="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center">
+          <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+        </div>
+      </div>
+
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-3 flex items-center justify-between">
+        <div>
+          <p class="text-[10px] font-bold text-gray-400 uppercase">Active in Kitchen</p>
+          <p class="text-lg font-black text-emerald-400" id="stat-active">0</p>
+        </div>
+        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+          <i data-lucide="flame" class="w-4 h-4"></i>
+        </div>
+      </div>
+
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-3 flex items-center justify-between">
+        <div>
+          <p class="text-[10px] font-bold text-gray-400 uppercase">Completed Today</p>
+          <p class="text-lg font-black text-purple-400" id="stat-completed">0</p>
+        </div>
+        <div class="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center">
+          <i data-lucide="check-circle" class="w-4 h-4"></i>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Main Content Area -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
+
+    <!-- TAB 1: LIVE ORDERS FEED -->
+    <div id="tab-content-orders" class="space-y-6">
+      
+      <!-- Filter Bar -->
+      <div class="flex flex-wrap items-center justify-between gap-3 bg-zinc-900/60 p-3 rounded-xl border border-zinc-800">
+        <div class="flex flex-wrap items-center gap-2">
+          <button id="filter-btn-active" onclick="filterOrderStatus('active')" class="status-filter-btn active px-3.5 py-2 rounded-xl text-xs font-black bg-amber-500 text-black shadow-md flex items-center space-x-1.5 transition">
+            <span>⚡ Active in Kitchen</span>
+            <span id="badge-active-count" class="bg-black/25 text-black px-1.5 py-0.2 rounded-full text-[10px] font-black">0</span>
+          </button>
+          <button id="filter-btn-received" onclick="filterOrderStatus('received')" class="status-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-zinc-800 text-gray-300 hover:text-white transition">
+            🔥 New
+          </button>
+          <button id="filter-btn-preparing" onclick="filterOrderStatus('preparing')" class="status-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-zinc-800 text-gray-300 hover:text-white transition">
+            🍳 Cooking
+          </button>
+          <button id="filter-btn-out_for_delivery" onclick="filterOrderStatus('out_for_delivery')" class="status-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-zinc-800 text-gray-300 hover:text-white transition">
+            🛵 On Way
+          </button>
+          <button id="filter-btn-completed" onclick="filterOrderStatus('completed')" class="status-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-zinc-800 text-gray-300 hover:text-white transition flex items-center space-x-1">
+            <span>✓ Completed History</span>
+            <span id="badge-completed-count" class="bg-zinc-700 text-gray-300 px-1.5 py-0.2 rounded-full text-[10px] font-bold">0</span>
+          </button>
+          <button id="filter-btn-all" onclick="filterOrderStatus('all')" class="status-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-zinc-800 text-gray-400 hover:text-white transition">
+            All Records
+          </button>
+        </div>
+
+        <button onclick="loadOrders(); loadStats();" class="flex items-center space-x-1 text-xs text-amber-400 hover:text-amber-300 font-semibold">
+          <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+          <span>Refresh List</span>
+        </button>
+      </div>
+
+      <!-- Live Orders List -->
+      <div id="admin-orders-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Injected via JavaScript -->
+        <div class="col-span-full py-16 text-center text-gray-500">
+          <i data-lucide="loader-2" class="w-8 h-8 animate-spin mx-auto text-amber-500 mb-2"></i>
+          <p>Connecting to live kitchen feed...</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TAB 2: MENU & STOCK TOGGLE -->
+    <div id="tab-content-menu" class="hidden space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h3 class="text-xl font-bold text-white">Menu & Inventory Manager</h3>
+          <p class="text-xs text-gray-400">Toggle item availability or edit pricing in 1-click</p>
+        </div>
+        <button onclick="openAddItemModal()" class="gold-glow-btn text-black font-bold px-4 py-2 rounded-xl text-xs flex items-center space-x-1.5">
+          <i data-lucide="plus" class="w-4 h-4"></i>
+          <span>Add New Menu Item</span>
+        </button>
+      </div>
+
+      <div class="bg-zinc-950 border border-zinc-800 rounded-2xl overflow-hidden shadow-xl">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-gray-300">
+            <thead class="bg-zinc-900 border-b border-zinc-800 text-gray-400 uppercase font-semibold">
+              <tr>
+                <th class="p-3.5">Item</th>
+                <th class="p-3.5">Category</th>
+                <th class="p-3.5">Price (₹)</th>
+                <th class="p-3.5">Stock Status</th>
+                <th class="p-3.5 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="admin-menu-table-body" class="divide-y divide-zinc-800/60">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: ANALYTICS & REPORTS -->
+    <div id="tab-content-analytics" class="hidden space-y-6">
+      <div>
+        <h3 class="text-xl font-bold text-white">Sales & Order Analytics</h3>
+        <p class="text-xs text-gray-400">Live performance of Guru Kirpa Fast Food</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Top Selling Dishes -->
+        <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-5 space-y-4">
+          <div class="flex items-center justify-between">
+            <h4 class="font-bold text-white text-sm flex items-center space-x-2">
+              <i data-lucide="award" class="w-4 h-4 text-amber-400"></i>
+              <span>Top Selling Dishes Today</span>
+            </h4>
+          </div>
+          <div id="top-items-list" class="space-y-3">
+            <!-- Dynamically injected -->
+          </div>
+        </div>
+
+        <!-- Quick Summary Box -->
+        <div class="bg-zinc-950 border border-zinc-800 rounded-2xl p-5 space-y-4">
+          <h4 class="font-bold text-white text-sm flex items-center space-x-2">
+            <i data-lucide="info" class="w-4 h-4 text-blue-400"></i>
+            <span>Kitchen Performance</span>
+          </h4>
+          <div class="space-y-2.5 text-xs text-gray-300">
+            <div class="flex justify-between py-2 border-b border-zinc-800">
+              <span>Average Order Fulfillment Time</span>
+              <span class="font-bold text-white">~18 mins</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-zinc-800">
+              <span>Pure Veg Assurance</span>
+              <span class="font-bold text-emerald-400">100% Guaranteed</span>
+            </div>
+            <div class="flex justify-between py-2 border-b border-zinc-800">
+              <span>Direct WhatsApp Contact</span>
+              <span class="font-mono text-amber-400">+91 6239591644</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: STORE SETTINGS -->
+    <div id="tab-content-settings" class="hidden space-y-6 max-w-2xl">
+      <div>
+        <h3 class="text-xl font-bold text-white">Store Configurations</h3>
+        <p class="text-xs text-gray-400">Manage business details, delivery charges, and PIN</p>
+      </div>
+
+      <form id="settings-form" onsubmit="saveStoreSettings(event)" class="bg-zinc-950 border border-zinc-800 rounded-2xl p-6 space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-medium text-gray-300 mb-1">Store Phone / WhatsApp</label>
+            <input type="text" id="setting-phone" class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-gray-300 mb-1">Store UPI ID for QR Scan</label>
+            <input type="text" id="setting-upi" class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-medium text-gray-300 mb-1">Standard Delivery Fee (₹)</label>
+            <input type="number" id="setting-delivery-fee" class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-gray-300 mb-1">Free Delivery Above (₹)</label>
+            <input type="number" id="setting-free-delivery" class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-gray-300 mb-1">Admin Security PIN</label>
+          <input type="password" id="setting-admin-pin" placeholder="Enter new PIN" class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+          <p class="text-[11px] text-gray-500 mt-1">Used to unlock this kitchen dashboard.</p>
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" class="gold-glow-btn text-black font-extrabold px-6 py-2.5 rounded-xl text-sm">
+            Save Settings
+          </button>
+        </div>
+      </form>
+
+      <!-- Delivery Partner / Rider PIN Management Card -->
+      <div class="bg-zinc-950 border border-amber-500/30 rounded-2xl p-6 space-y-4 shadow-xl">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-xl">
+              🛵
+            </div>
+            <div>
+              <h4 class="text-base font-bold text-white flex items-center space-x-2">
+                <span>Delivery Partner PIN Management</span>
+                <span class="bg-amber-500/20 text-amber-400 text-[10px] font-extrabold px-2 py-0.5 rounded-full">STAFF PASS</span>
+              </h4>
+              <p class="text-xs text-gray-400">View and change passwords / 4-digit PINs for all delivery riders</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <button type="button" onclick="loadAdminRidersList()" class="text-xs text-amber-400 hover:text-amber-300 font-semibold px-2.5 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center space-x-1 transition">
+              <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+              <span>Refresh</span>
+            </button>
+            <button type="button" onclick="revokeAllSessions()" title="Force logout all active riders and kitchen sessions" class="text-xs text-red-400 hover:text-red-300 font-bold px-2.5 py-1.5 rounded-lg bg-red-950/40 hover:bg-red-900/60 border border-red-800/60 flex items-center space-x-1 transition">
+              <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i>
+              <span>Revoke All Sessions</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="admin-riders-pin-list" class="space-y-3 pt-1">
+          <!-- Populated dynamically via JS -->
+          <div class="text-xs text-gray-500 py-4 text-center">Loading rider accounts...</div>
+        </div>
+      </div>
+
+      <!-- WhatsApp Business Setup & Catalog Card -->
+      <div class="bg-zinc-950 border border-emerald-500/30 rounded-2xl p-6 space-y-4 shadow-xl">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
+            <i data-lucide="message-circle" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-white flex items-center space-x-2">
+              <span>WhatsApp Business Integration</span>
+              <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-extrabold px-2 py-0.5 rounded-full">ACTIVE</span>
+            </h4>
+            <p class="text-xs text-gray-400">Receive full orders and manage WhatsApp Catalog for <span class="text-emerald-400 font-mono font-bold">+91 6239591644</span></p>
+          </div>
+        </div>
+
+        <div class="p-3 bg-zinc-900/80 rounded-xl border border-zinc-800 text-xs text-gray-300 space-y-2">
+          <p class="font-semibold text-white">✅ How WhatsApp Business Works With This Website:</p>
+          <ul class="list-disc list-inside space-y-1 text-gray-400 text-[11px]">
+            <li>Customer chooses items on website ➔ clicks <b>Place Order</b> ➔ 1-click sends complete bill to your WhatsApp Business app.</li>
+            <li>Your WhatsApp Business phone <b class="text-white font-mono">6239591644</b> receives: Customer Name, Phone, Address, Items List, and Total!</li>
+            <li>You can also download the ready-made <b>Catalog CSV</b> below to add all 34 menu items directly into WhatsApp Business Profile.</li>
+          </ul>
+        </div>
+
+        <!-- Catalog Download & Quick Actions -->
+        <div class="flex flex-wrap items-center gap-3 pt-1">
+          <a href="/whatsapp_catalog.csv" download="guru_kirpa_whatsapp_catalog.csv" class="gold-glow-btn text-black font-extrabold px-4 py-2.5 rounded-xl text-xs flex items-center space-x-2 shadow-md">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            <span>Download WhatsApp Business Catalog (.CSV)</span>
+          </a>
+
+          <a href="https://web.whatsapp.com" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center space-x-1.5 transition">
+            <i data-lucide="external-link" class="w-4 h-4"></i>
+            <span>Open WhatsApp Web</span>
+          </a>
+        </div>
+
+        <!-- WhatsApp Quick Auto-Reply Template -->
+        <div class="p-3 bg-zinc-900 rounded-xl border border-zinc-800 text-xs space-y-1.5">
+          <p class="font-bold text-amber-400">💡 Recommended WhatsApp Business Greeting / Away Message:</p>
+          <div class="bg-black/50 p-2.5 rounded-lg border border-zinc-800 font-mono text-[11px] text-gray-300 select-all">
+            Welcome to Guru Kirpa Fast Food! 🍔✨ Har Bite Me Hai Kirpa ❤️ 100% Pure Veg. View our full menu and order online with live tracking here: https://gurukirpa.shop
+          </div>
+          <p class="text-[10px] text-gray-500">Copy this text and paste into your WhatsApp Business App: <b>Settings &gt; Business Tools &gt; Greeting Message</b>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: CUSTOMER REVIEWS & FEEDBACK -->
+    <div id="tab-content-reviews" class="hidden space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h3 class="text-xl font-bold text-white">Customer Reviews & Ratings</h3>
+          <p class="text-xs text-gray-400">Feedback and ratings submitted by Guru Kirpa customers</p>
+        </div>
+        <button onclick="loadReviews()" class="flex items-center space-x-1.5 text-xs text-amber-400 hover:text-amber-300 font-semibold px-3 py-1.5 bg-zinc-900 border border-zinc-800 rounded-xl">
+          <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+          <span>Refresh Reviews</span>
+        </button>
+      </div>
+
+      <!-- Reviews Grid -->
+      <div id="admin-reviews-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Edit Menu Item Modal (FULL EDIT: Name, Price, Category, Image, Description) -->
+  <div id="edit-item-modal" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="bg-zinc-950 border border-zinc-800 w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4 max-h-[92vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+        <div>
+          <h4 class="font-bold text-lg text-white">Edit Dish Details</h4>
+          <p class="text-xs text-amber-400">Change image, name, price, description or stock</p>
+        </div>
+        <button onclick="closeEditItemModal()" class="text-gray-400 hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form id="edit-item-form" onsubmit="saveEditedMenuItem(event)" class="space-y-3.5">
+        <input type="hidden" id="edit-item-id">
+
+        <!-- Image Preview & Live URL -->
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">Dish Image URL</label>
+          <div class="flex items-center space-x-3">
+            <img id="edit-item-img-preview" src="" alt="Preview" class="w-16 h-16 rounded-xl object-cover border border-zinc-700 bg-zinc-900 flex-shrink-0">
+            <div class="flex-grow space-y-1">
+              <input type="url" id="edit-item-img" oninput="updateImagePreview(this.value)" placeholder="https://..." class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+              <p class="text-[10px] text-gray-500">Paste any image URL or choose a preset photo below:</p>
+            </div>
+          </div>
+
+          <!-- Quick Presets -->
+          <div class="flex flex-wrap gap-1.5 pt-2">
+            <button type="button" onclick="setPresetImage('chaap')" class="px-2 py-0.5 rounded bg-zinc-800 hover:bg-zinc-700 text-amber-300 text-[10px] border border-zinc-700">🍢 Chaap Photo</button>
+            <button type="button" onclick="setPresetImage('burger')" class="px-2 py-0.5 rounded bg-zinc-800 hover:bg-zinc-700 text-amber-300 text-[10px] border border-zinc-700">🍔 Burger Photo</button>
+            <button type="button" onclick="setPresetImage('shake')" class="px-2 py-0.5 rounded bg-zinc-800 hover:bg-zinc-700 text-amber-300 text-[10px] border border-zinc-700">🥤 Shake Photo</button>
+            <button type="button" onclick="setPresetImage('roll')" class="px-2 py-0.5 rounded bg-zinc-800 hover:bg-zinc-700 text-amber-300 text-[10px] border border-zinc-700">🌯 Roll Photo</button>
+            <button type="button" onclick="setPresetImage('panipuri')" class="px-2 py-0.5 rounded bg-zinc-800 hover:bg-zinc-700 text-amber-300 text-[10px] border border-zinc-700">🍲 Pani Puri Photo</button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">Dish Name *</label>
+          <input type="text" id="edit-item-name" required class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">Category *</label>
+            <select id="edit-item-category" class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+              <option value="Chaap">Chaap</option>
+              <option value="Burger">Burger</option>
+              <option value="Drink Crush">Drink Crush</option>
+              <option value="Fast Food">Fast Food</option>
+              <option value="Pani Puri">Pani Puri</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">Price in Rupees (₹) *</label>
+            <input type="number" id="edit-item-price" required min="10" class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white font-mono font-bold focus:outline-none focus:border-amber-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">Description</label>
+          <textarea id="edit-item-desc" rows="2" class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500"></textarea>
+        </div>
+
+        <!-- Toggles -->
+        <div class="grid grid-cols-2 gap-3 pt-1">
+          <label class="flex items-center space-x-2 p-2.5 bg-zinc-900 rounded-xl border border-zinc-800 cursor-pointer">
+            <input type="checkbox" id="edit-item-stock" class="accent-amber-500 w-4 h-4">
+            <span class="text-xs font-semibold text-gray-200">In Stock</span>
+          </label>
+          <label class="flex items-center space-x-2 p-2.5 bg-zinc-900 rounded-xl border border-zinc-800 cursor-pointer">
+            <input type="checkbox" id="edit-item-addon" class="accent-amber-500 w-4 h-4">
+            <span class="text-xs font-semibold text-gray-200">+ Ice Cream Option</span>
+          </label>
+        </div>
+
+        <div class="pt-3 flex space-x-3">
+          <button type="button" onclick="closeEditItemModal()" class="w-1/2 py-3 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-gray-300 text-xs font-bold transition">Cancel</button>
+          <button type="submit" class="w-1/2 gold-glow-btn text-black font-extrabold py-3 rounded-xl text-xs transition">Save All Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add New Menu Item Modal -->
+  <div id="add-item-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="bg-zinc-950 border border-zinc-800 w-full max-w-md rounded-2xl overflow-hidden shadow-2xl p-6 space-y-4">
+      <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+        <h4 class="font-bold text-lg text-white">Add New Menu Item</h4>
+        <button onclick="closeAddItemModal()" class="text-gray-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form id="add-item-form" onsubmit="submitNewMenuItem(event)" class="space-y-3">
+        <div>
+          <label class="block text-xs font-medium text-gray-300 mb-1">Dish Name *</label>
+          <input type="text" id="new-item-name" required placeholder="e.g. Tandoori Chaap" class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-gray-300 mb-1">Category *</label>
+            <select id="new-item-category" class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+              <option value="Chaap">Chaap</option>
+              <option value="Burger">Burger</option>
+              <option value="Drink Crush">Drink Crush</option>
+              <option value="Fast Food">Fast Food</option>
+              <option value="Pani Puri">Pani Puri</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-gray-300 mb-1">Price (₹) *</label>
+            <input type="number" id="new-item-price" required min="10" placeholder="120" class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-gray-300 mb-1">Description</label>
+          <input type="text" id="new-item-desc" placeholder="Ingredients, taste, spices" class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-medium text-gray-300 mb-1">Image URL (Optional)</label>
+          <input type="url" id="new-item-img" placeholder="https://..." class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+        </div>
+
+        <div class="pt-3 flex space-x-3">
+          <button type="button" onclick="closeAddItemModal()" class="w-1/2 py-2.5 rounded-xl bg-zinc-800 text-gray-300 text-xs font-bold">Cancel</button>
+          <button type="submit" class="w-1/2 gold-glow-btn text-black font-extrabold py-2.5 rounded-xl text-xs">Save Item</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Hidden Printable Thermal KOT & Customer Receipt Element -->
+  <div id="printable-kot" class="hidden">
+    <!-- Injected dynamically before window.print() -->
+  </div>
+
+  <!-- Admin JS -->
+  <script src="/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "guru-kirpa-fast-food",
+  "version": "1.0.0",
+  "description": "Full-automatic online food ordering and live kitchen management dashboard for Guru Kirpa Fast Food",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

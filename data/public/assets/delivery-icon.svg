@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#18181b"/>
+      <stop offset="100%" stop-color="#09090b"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#F59E0B" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  
+  <!-- Background rounded rectangle -->
+  <rect width="512" height="512" rx="128" fill="url(#bgGrad)" stroke="#27272a" stroke-width="8"/>
+  
+  <!-- Outer Gold Accent Ring -->
+  <circle cx="256" cy="256" r="210" fill="none" stroke="url(#goldGrad)" stroke-width="4" stroke-opacity="0.3"/>
+  <circle cx="256" cy="256" r="180" fill="#18181b" filter="url(#glow)"/>
+
+  <!-- Delivery Scooter Icon Elements -->
+  <!-- Back Wheel -->
+  <circle cx="170" cy="340" r="42" fill="#09090b" stroke="url(#goldGrad)" stroke-width="12"/>
+  <circle cx="170" cy="340" r="16" fill="#F59E0B"/>
+  
+  <!-- Front Wheel -->
+  <circle cx="342" cy="340" r="42" fill="#09090b" stroke="url(#goldGrad)" stroke-width="12"/>
+  <circle cx="342" cy="340" r="16" fill="#F59E0B"/>
+
+  <!-- Scooter Body & Chassis -->
+  <path d="M170 340 L230 340 L270 270 L342 270 L330 190 L300 190" fill="none" stroke="url(#goldGrad)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Footboard & Seat -->
+  <path d="M210 270 L260 270" stroke="#F59E0B" stroke-width="18" stroke-linecap="round"/>
+  <path d="M160 250 Q190 240 220 250" stroke="#E4E4E7" stroke-width="20" stroke-linecap="round"/>
+
+  <!-- Handlebars & Front Shield -->
+  <path d="M330 190 L342 340" stroke="url(#goldGrad)" stroke-width="14" stroke-linecap="round"/>
+  <path d="M315 180 L350 180" stroke="#FBBF24" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="355" cy="210" r="10" fill="#F59E0B"/>
+
+  <!-- Food Delivery Box on Back -->
+  <rect x="120" y="170" width="85" height="75" rx="14" fill="url(#goldGrad)"/>
+  <rect x="130" y="180" width="65" height="55" rx="8" fill="#18181b"/>
+  <!-- Food / Heart Emblem on Box -->
+  <text x="162" y="218" font-size="28" text-anchor="middle" fill="#F59E0B" font-family="sans-serif" font-weight="900">🍔</text>
+
+  <!-- Title Pill at Bottom -->
+  <rect x="110" y="415" width="292" height="42" rx="21" fill="#F59E0B"/>
+  <text x="256" y="443" font-size="18" text-anchor="middle" fill="#000000" font-family="system-ui, -apple-system, sans-serif" font-weight="900" letter-spacing="2">GURU KIRPA RIDER</text>
+</svg>
