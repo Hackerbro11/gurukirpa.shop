@@ -1,0 +1,1125 @@
+[
+  {
+    "id": "GK-0922-004",
+    "customerName": "&lt;script&gt;alert(&quot;HACKED&quot;)&lt;&#x2F;script&gt;Sardar Ji",
+    "phone": "9876543210",
+    "orderType": "delivery",
+    "address": "&lt;b&gt;Main Market&lt;&#x2F;b&gt; &lt;img src=x onerror=alert(1)&gt;",
+    "tableNumber": "",
+    "notes": "&lt;script&gt;fetch(&quot;http:&#x2F;&#x2F;evil.com&quot;)&lt;&#x2F;script&gt;",
+    "items": [
+      {
+        "id": "bg-1",
+        "name": "Aloo Tikki Burger",
+        "price": 50,
+        "quantity": 1,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 50
+      }
+    ],
+    "subtotal": 50,
+    "deliveryFee": 30,
+    "grandTotal": 80,
+    "paymentMethod": "cod",
+    "paymentStatus": "pay_on_delivery",
+    "upiRef": "",
+    "status": "received",
+    "createdAt": "2026-09-22T03:17:59.909Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-22T03:17:59.909Z",
+        "note": "Order placed by customer"
+      }
+    ]
+  },
+  {
+    "id": "GK-0922-003",
+    "customerName": "Attacker John",
+    "phone": "9999988888",
+    "orderType": "takeaway",
+    "address": "Takeaway Pickup",
+    "tableNumber": "",
+    "notes": "",
+    "items": [
+      {
+        "id": "bg-1",
+        "name": "Aloo Tikki Burger",
+        "price": 50,
+        "quantity": 2,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 100
+      }
+    ],
+    "subtotal": 100,
+    "deliveryFee": 0,
+    "grandTotal": 100,
+    "paymentMethod": "cod",
+    "paymentStatus": "pay_on_delivery",
+    "upiRef": "",
+    "status": "received",
+    "createdAt": "2026-09-22T03:17:59.904Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-22T03:17:59.904Z",
+        "note": "Order placed by customer"
+      }
+    ]
+  },
+  {
+    "id": "GK-0922-002",
+    "customerName": "&lt;script&gt;alert(&quot;HACKED&quot;)&lt;&#x2F;script&gt;Sardar Ji",
+    "phone": "9876543210",
+    "orderType": "delivery",
+    "address": "&lt;b&gt;Main Market&lt;&#x2F;b&gt; &lt;img src=x onerror=alert(1)&gt;",
+    "tableNumber": "",
+    "notes": "&lt;script&gt;fetch(&quot;http:&#x2F;&#x2F;evil.com&quot;)&lt;&#x2F;script&gt;",
+    "items": [
+      {
+        "id": "bg-1",
+        "name": "Aloo Tikki Burger",
+        "price": 50,
+        "quantity": 1,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 50
+      }
+    ],
+    "subtotal": 50,
+    "deliveryFee": 30,
+    "grandTotal": 80,
+    "paymentMethod": "cod",
+    "paymentStatus": "pay_on_delivery",
+    "upiRef": "",
+    "status": "received",
+    "createdAt": "2026-09-22T03:13:22.550Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-22T03:13:22.550Z",
+        "note": "Order placed by customer"
+      }
+    ]
+  },
+  {
+    "id": "GK-0922-001",
+    "customerName": "Attacker John",
+    "phone": "9999988888",
+    "orderType": "takeaway",
+    "address": "Takeaway Pickup",
+    "tableNumber": "",
+    "notes": "",
+    "items": [
+      {
+        "id": "bg-1",
+        "name": "Aloo Tikki Burger",
+        "price": 50,
+        "quantity": 2,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 100
+      }
+    ],
+    "subtotal": 100,
+    "deliveryFee": 0,
+    "grandTotal": 100,
+    "paymentMethod": "cod",
+    "paymentStatus": "pay_on_delivery",
+    "upiRef": "",
+    "status": "received",
+    "createdAt": "2026-09-22T03:13:22.545Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-22T03:13:22.545Z",
+        "note": "Order placed by customer"
+      }
+    ]
+  },
+  {
+    "id": "GK-0921-019",
+    "customerName": "&lt;script&gt;alert(&quot;HACKED&quot;)&lt;&#x2F;script&gt;Sardar Ji",
+    "phone": "9876543210",
+    "orderType": "delivery",
+    "address": "&lt;b&gt;Main Market&lt;&#x2F;b&gt; &lt;img src=x onerror=alert(1)&gt;",
+    "tableNumber": "",
+    "notes": "&lt;script&gt;fetch(&quot;http:&#x2F;&#x2F;evil.com&quot;)&lt;&#x2F;script&gt;",
+    "items": [
+      {
+        "id": "bg-1",
+        "name": "Aloo Tikki Burger",
+        "price": 50,
+        "quantity": 1,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 50
+      }
+    ],
+    "subtotal": 50,
+    "deliveryFee": 30,
+    "grandTotal": 80,
+    "paymentMethod": "cod",
+    "paymentStatus": "paid",
+    "upiRef": "",
+    "status": "completed",
+    "createdAt": "2026-09-21T22:50:23.258Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-21T22:50:23.258Z",
+        "note": "Order placed by customer"
+      },
+      {
+        "status": "preparing",
+        "time": "2026-09-21T22:50:43.045Z",
+        "note": "Order marked as preparing"
+      },
+      {
+        "status": "out_for_delivery",
+        "time": "2026-09-21T22:50:44.234Z",
+        "note": "Order marked as out_for_delivery"
+      },
+      {
+        "status": "completed",
+        "time": "2026-09-21T22:50:44.971Z",
+        "note": "Order marked as completed"
+      }
+    ]
+  },
+  {
+    "id": "GK-0921-018",
+    "customerName": "Attacker John",
+    "phone": "9999988888",
+    "orderType": "takeaway",
+    "address": "Takeaway Pickup",
+    "tableNumber": "",
+    "notes": "",
+    "items": [
+      {
+        "id": "bg-1",
+        "name": "Aloo Tikki Burger",
+        "price": 50,
+        "quantity": 2,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 100
+      }
+    ],
+    "subtotal": 100,
+    "deliveryFee": 0,
+    "grandTotal": 100,
+    "paymentMethod": "cod",
+    "paymentStatus": "pay_on_delivery",
+    "upiRef": "",
+    "status": "received",
+    "createdAt": "2026-09-21T22:50:23.252Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-21T22:50:23.252Z",
+        "note": "Order placed by customer"
+      }
+    ]
+  },
+  {
+    "id": "GK-0921-017",
+    "customerName": "SUMIT",
+    "phone": "6280876308",
+    "orderType": "delivery",
+    "address": "KHARAR GTB NAGAR",
+    "tableNumber": "",
+    "notes": "",
+    "items": [
+      {
+        "id": "ch-1",
+        "name": "Royal Malai Chaap (Special)",
+        "price": 150,
+        "quantity": 1,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "deliveryFee": 30,
+    "grandTotal": 180,
+    "paymentMethod": "upi",
+    "paymentStatus": "pending_verification",
+    "upiRef": "",
+    "status": "received",
+    "createdAt": "2026-09-21T22:44:36.392Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-21T22:44:36.392Z",
+        "note": "Order placed by customer"
+      }
+    ]
+  },
+  {
+    "id": "GK-0921-016",
+    "customerName": "&lt;script&gt;alert(&quot;HACKED&quot;)&lt;&#x2F;script&gt;Sardar Ji",
+    "phone": "9876543210",
+    "orderType": "delivery",
+    "address": "&lt;b&gt;Main Market&lt;&#x2F;b&gt; &lt;img src=x onerror=alert(1)&gt;",
+    "tableNumber": "",
+    "notes": "&lt;script&gt;fetch(&quot;http:&#x2F;&#x2F;evil.com&quot;)&lt;&#x2F;script&gt;",
+    "items": [
+      {
+        "id": "bg-1",
+        "name": "Aloo Tikki Burger",
+        "price": 50,
+        "quantity": 1,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 50
+      }
+    ],
+    "subtotal": 50,
+    "deliveryFee": 30,
+    "grandTotal": 80,
+    "paymentMethod": "cod",
+    "paymentStatus": "pay_on_delivery",
+    "upiRef": "",
+    "status": "received",
+    "createdAt": "2026-09-21T22:44:01.174Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-21T22:44:01.174Z",
+        "note": "Order placed by customer"
+      }
+    ]
+  },
+  {
+    "id": "GK-0921-015",
+    "customerName": "Attacker John",
+    "phone": "9999988888",
+    "orderType": "takeaway",
+    "address": "Takeaway Pickup",
+    "tableNumber": "",
+    "notes": "",
+    "items": [
+      {
+        "id": "bg-1",
+        "name": "Aloo Tikki Burger",
+        "price": 50,
+        "quantity": 2,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 100
+      }
+    ],
+    "subtotal": 100,
+    "deliveryFee": 0,
+    "grandTotal": 100,
+    "paymentMethod": "cod",
+    "paymentStatus": "pay_on_delivery",
+    "upiRef": "",
+    "status": "received",
+    "createdAt": "2026-09-21T22:44:01.169Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-21T22:44:01.169Z",
+        "note": "Order placed by customer"
+      }
+    ]
+  },
+  {
+    "id": "GK-0921-014",
+    "customerName": "Payment Tester",
+    "phone": "9876543210",
+    "orderType": "takeaway",
+    "address": "Takeaway Pickup",
+    "tableNumber": "",
+    "notes": "",
+    "items": [
+      {
+        "id": "bg-1",
+        "name": "Aloo Tikki Burger",
+        "price": 50,
+        "quantity": 1,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 50
+      }
+    ],
+    "subtotal": 50,
+    "deliveryFee": 0,
+    "grandTotal": 50,
+    "paymentMethod": "upi",
+    "paymentStatus": "paid",
+    "upiRef": "987654321012",
+    "status": "received",
+    "createdAt": "2026-09-21T22:43:55.419Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-21T22:43:55.419Z",
+        "note": "Order placed by customer"
+      },
+      {
+        "status": "received",
+        "time": "2026-09-21T22:43:55.436Z",
+        "note": "Payment status updated to paid by Kitchen Admin"
+      }
+    ]
+  },
+  {
+    "id": "GK-0921-013",
+    "customerName": "SUMIT",
+    "phone": "6280876308",
+    "orderType": "delivery",
+    "address": "KHARAR GTB NAGAR",
+    "tableNumber": "",
+    "notes": "",
+    "items": [
+      {
+        "id": "ch-1",
+        "name": "Royal Malai Chaap (Special)",
+        "price": 150,
+        "quantity": 1,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "deliveryFee": 30,
+    "grandTotal": 180,
+    "paymentMethod": "upi",
+    "paymentStatus": "pending_verification",
+    "status": "received",
+    "createdAt": "2026-09-21T22:40:27.361Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-21T22:40:27.361Z",
+        "note": "Order placed by customer"
+      }
+    ]
+  },
+  {
+    "id": "GK-0921-012",
+    "customerName": "SUMIT",
+    "phone": "6280876308",
+    "orderType": "delivery",
+    "address": "KHARAR GTB NAGAR",
+    "tableNumber": "",
+    "notes": "",
+    "items": [
+      {
+        "id": "ch-1",
+        "name": "Royal Malai Chaap (Special)",
+        "price": 150,
+        "quantity": 1,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "deliveryFee": 30,
+    "grandTotal": 180,
+    "paymentMethod": "upi",
+    "paymentStatus": "paid",
+    "status": "completed",
+    "createdAt": "2026-09-21T22:34:06.214Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-21T22:34:06.214Z",
+        "note": "Order placed by customer"
+      },
+      {
+        "status": "preparing",
+        "time": "2026-09-21T22:34:13.832Z",
+        "note": "Order marked as preparing"
+      },
+      {
+        "status": "out_for_delivery",
+        "time": "2026-09-21T22:34:16.508Z",
+        "note": "Order marked as out_for_delivery"
+      },
+      {
+        "status": "completed",
+        "time": "2026-09-21T22:34:26.112Z",
+        "note": "Delivered successfully by Rider"
+      }
+    ],
+    "currentLocation": {
+      "lat": 31.43573986419649,
+      "lng": 76.71275759668143,
+      "speed": 25,
+      "heading": 0,
+      "updatedAt": "2026-09-21T22:34:21.640Z"
+    }
+  },
+  {
+    "id": "GK-0921-011",
+    "customerName": "&lt;script&gt;alert(&quot;HACKED&quot;)&lt;&#x2F;script&gt;Sardar Ji",
+    "phone": "9876543210",
+    "orderType": "delivery",
+    "address": "&lt;b&gt;Main Market&lt;&#x2F;b&gt; &lt;img src=x onerror=alert(1)&gt;",
+    "tableNumber": "",
+    "notes": "&lt;script&gt;fetch(&quot;http:&#x2F;&#x2F;evil.com&quot;)&lt;&#x2F;script&gt;",
+    "items": [
+      {
+        "id": "bg-1",
+        "name": "Aloo Tikki Burger",
+        "price": 50,
+        "quantity": 1,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 50
+      }
+    ],
+    "subtotal": 50,
+    "deliveryFee": 30,
+    "grandTotal": 80,
+    "paymentMethod": "cod",
+    "paymentStatus": "paid",
+    "status": "completed",
+    "createdAt": "2026-09-21T22:31:50.828Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-21T22:31:50.828Z",
+        "note": "Order placed by customer"
+      },
+      {
+        "status": "preparing",
+        "time": "2026-09-21T22:32:21.829Z",
+        "note": "Order marked as preparing"
+      },
+      {
+        "status": "out_for_delivery",
+        "time": "2026-09-21T22:32:32.756Z",
+        "note": "Picked up by rider Gurpreet Singh"
+      },
+      {
+        "status": "completed",
+        "time": "2026-09-21T22:32:37.880Z",
+        "note": "Delivered successfully by Gurpreet Singh"
+      }
+    ],
+    "rider": {
+      "id": "rider-1",
+      "name": "Gurpreet Singh",
+      "phone": "9876500001",
+      "vehicle": "Honda Activa (PB-10-AB-1234)"
+    },
+    "currentLocation": {
+      "lat": 31.435715877143686,
+      "lng": 76.71276428247477,
+      "speed": 25,
+      "heading": 0,
+      "updatedAt": "2026-09-21T22:32:43.129Z"
+    }
+  },
+  {
+    "id": "GK-0921-010",
+    "customerName": "Attacker John",
+    "phone": "9999988888",
+    "orderType": "takeaway",
+    "address": "Takeaway Pickup",
+    "tableNumber": "",
+    "notes": "",
+    "items": [
+      {
+        "id": "bg-1",
+        "name": "Aloo Tikki Burger",
+        "price": 50,
+        "quantity": 2,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 100
+      }
+    ],
+    "subtotal": 100,
+    "deliveryFee": 0,
+    "grandTotal": 100,
+    "paymentMethod": "cod",
+    "paymentStatus": "pay_on_delivery",
+    "status": "received",
+    "createdAt": "2026-09-21T22:31:50.823Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-21T22:31:50.823Z",
+        "note": "Order placed by customer"
+      }
+    ]
+  },
+  {
+    "id": "GK-0921-009",
+    "customerName": "Attacker John",
+    "phone": "9999988888",
+    "orderType": "takeaway",
+    "address": "Takeaway Pickup",
+    "tableNumber": "",
+    "notes": "",
+    "items": [
+      {
+        "id": "bg-1",
+        "name": "Aloo Tikki Burger",
+        "price": 50,
+        "quantity": 2,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 100
+      }
+    ],
+    "subtotal": 100,
+    "deliveryFee": 0,
+    "grandTotal": 100,
+    "paymentMethod": "cod",
+    "paymentStatus": "pay_on_delivery",
+    "status": "preparing",
+    "createdAt": "2026-09-21T22:30:49.211Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-21T22:30:49.211Z",
+        "note": "Order placed by customer"
+      },
+      {
+        "status": "preparing",
+        "time": "2026-09-21T22:31:06.136Z",
+        "note": "Order marked as preparing"
+      }
+    ]
+  },
+  {
+    "id": "GK-0921-008",
+    "customerName": "Attacker John",
+    "phone": "9999988888",
+    "orderType": "takeaway",
+    "address": "Takeaway Pickup",
+    "tableNumber": "",
+    "notes": "",
+    "items": [
+      {
+        "id": "bg-1",
+        "name": "Aloo Tikki Burger",
+        "price": 50,
+        "quantity": 2,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 100
+      }
+    ],
+    "subtotal": 100,
+    "deliveryFee": 0,
+    "grandTotal": 100,
+    "paymentMethod": "cod",
+    "paymentStatus": "paid",
+    "status": "completed",
+    "createdAt": "2026-09-21T22:29:36.622Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-21T22:29:36.622Z",
+        "note": "Order placed by customer"
+      },
+      {
+        "status": "preparing",
+        "time": "2026-09-21T22:29:45.446Z",
+        "note": "Order marked as preparing"
+      },
+      {
+        "status": "out_for_delivery",
+        "time": "2026-09-21T22:30:00.884Z",
+        "note": "Order marked as out_for_delivery"
+      },
+      {
+        "status": "completed",
+        "time": "2026-09-21T22:30:13.395Z",
+        "note": "Order marked as completed"
+      }
+    ]
+  },
+  {
+    "id": "GK-0921-007",
+    "customerName": "SUMIT",
+    "phone": "6280876308",
+    "orderType": "delivery",
+    "address": "KHARAR GTB NAGAR",
+    "tableNumber": "",
+    "notes": "",
+    "items": [
+      {
+        "id": "ch-1",
+        "name": "Royal Malai Chaap (Special)",
+        "price": 150,
+        "quantity": 1,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "deliveryFee": 30,
+    "grandTotal": 180,
+    "paymentMethod": "cod",
+    "paymentStatus": "paid",
+    "status": "completed",
+    "createdAt": "2026-09-21T22:22:49.360Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-21T22:22:49.360Z",
+        "note": "Order placed by customer"
+      },
+      {
+        "status": "preparing",
+        "time": "2026-09-21T22:22:59.307Z",
+        "note": "Order marked as preparing"
+      },
+      {
+        "status": "out_for_delivery",
+        "time": "2026-09-21T22:23:04.978Z",
+        "note": "Order marked as out_for_delivery"
+      },
+      {
+        "status": "completed",
+        "time": "2026-09-21T22:23:13.958Z",
+        "note": "Delivered successfully by Rider"
+      }
+    ],
+    "currentLocation": {
+      "lat": 31.43580849871751,
+      "lng": 76.71273388314496,
+      "speed": 25,
+      "heading": 0,
+      "updatedAt": "2026-09-21T22:23:10.031Z"
+    }
+  },
+  {
+    "id": "GK-0921-006",
+    "customerName": "Amanpreet",
+    "phone": "9814012345",
+    "orderType": "delivery",
+    "address": "Shop 14, Ghumar Mandi, Ludhiana",
+    "tableNumber": "",
+    "notes": "",
+    "items": [
+      {
+        "id": "ch-1",
+        "name": "Royal Malai Chaap (Special)",
+        "price": 150,
+        "quantity": 1,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 150
+      }
+    ],
+    "subtotal": 150,
+    "deliveryFee": 30,
+    "grandTotal": 180,
+    "paymentMethod": "cod",
+    "paymentStatus": "paid",
+    "status": "completed",
+    "createdAt": "2026-09-21T22:21:06.180Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-21T22:21:06.180Z",
+        "note": "Order placed by customer"
+      },
+      {
+        "status": "preparing",
+        "time": "2026-09-21T22:21:20.867Z",
+        "note": "Order marked as preparing"
+      },
+      {
+        "status": "out_for_delivery",
+        "time": "2026-09-21T22:21:20.885Z",
+        "note": "Picked up by rider Gurpreet Singh"
+      },
+      {
+        "status": "completed",
+        "time": "2026-09-21T22:21:20.897Z",
+        "note": "Delivered successfully by Gurpreet Singh"
+      }
+    ],
+    "rider": {
+      "id": "rider-1",
+      "name": "Gurpreet Singh",
+      "phone": "9876500001",
+      "vehicle": "Honda Activa (PB-10-AB-1234)"
+    }
+  },
+  {
+    "id": "GK-0921-005",
+    "customerName": "Navjot Sandhu",
+    "phone": "9876543210",
+    "orderType": "delivery",
+    "address": "Flat 302, Green Avenue, Ludhiana",
+    "tableNumber": "",
+    "notes": "Please add extra green chutney packets",
+    "items": [
+      {
+        "id": "ch-1",
+        "name": "Royal Malai Chaap (Special)",
+        "price": 150,
+        "quantity": 1,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 150
+      },
+      {
+        "id": "bg-3",
+        "name": "Cheese Burger",
+        "price": 90,
+        "quantity": 2,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 180
+      },
+      {
+        "id": "dr-1",
+        "name": "Mango Crush Shake",
+        "price": 70,
+        "quantity": 1,
+        "withIceCream": true,
+        "addonPrice": 20,
+        "itemTotal": 90
+      }
+    ],
+    "subtotal": 420,
+    "deliveryFee": 0,
+    "grandTotal": 420,
+    "paymentMethod": "upi",
+    "paymentStatus": "paid",
+    "status": "completed",
+    "createdAt": "2026-09-21T22:17:12.092Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-21T22:17:12.092Z",
+        "note": "Order placed by customer"
+      },
+      {
+        "status": "out_for_delivery",
+        "time": "2026-09-21T22:17:12.098Z",
+        "note": "Picked up by rider Gurpreet Singh"
+      },
+      {
+        "status": "completed",
+        "time": "2026-09-21T22:17:12.109Z",
+        "note": "Delivered successfully by Gurpreet Singh"
+      },
+      {
+        "status": "out_for_delivery",
+        "time": "2026-09-21T22:17:54.805Z",
+        "note": "Picked up by rider Gurpreet Singh"
+      },
+      {
+        "status": "completed",
+        "time": "2026-09-21T22:17:59.738Z",
+        "note": "Delivered successfully by Gurpreet Singh"
+      },
+      {
+        "status": "out_for_delivery",
+        "time": "2026-09-21T22:18:02.964Z",
+        "note": "Picked up by rider Gurpreet Singh"
+      },
+      {
+        "status": "completed",
+        "time": "2026-09-21T22:18:06.695Z",
+        "note": "Delivered successfully by Gurpreet Singh"
+      },
+      {
+        "status": "out_for_delivery",
+        "time": "2026-09-21T22:18:22.373Z",
+        "note": "Picked up by rider Gurpreet Singh"
+      },
+      {
+        "status": "completed",
+        "time": "2026-09-21T22:18:25.881Z",
+        "note": "Delivered successfully by Gurpreet Singh"
+      }
+    ],
+    "rider": {
+      "id": "rider-1",
+      "name": "Gurpreet Singh",
+      "phone": "9876500001",
+      "vehicle": "Honda Activa (PB-10-AB-1234)"
+    },
+    "currentLocation": {
+      "lat": 31.435787786188975,
+      "lng": 76.71274175753102,
+      "speed": 25,
+      "heading": 0,
+      "updatedAt": "2026-09-21T22:18:25.886Z"
+    }
+  },
+  {
+    "id": "GK-0921-004",
+    "customerName": "SUMIT",
+    "phone": "6280876308",
+    "orderType": "delivery",
+    "address": "KHARAR GTB NAGAR",
+    "tableNumber": "",
+    "notes": "",
+    "items": [
+      {
+        "id": "ch-1",
+        "name": "Malai Chaap",
+        "price": 140,
+        "quantity": 1,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 140
+      }
+    ],
+    "subtotal": 140,
+    "deliveryFee": 30,
+    "grandTotal": 170,
+    "paymentMethod": "cod",
+    "paymentStatus": "paid",
+    "status": "completed",
+    "createdAt": "2026-09-21T22:14:31.915Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-21T22:14:31.915Z",
+        "note": "Order placed by customer"
+      },
+      {
+        "status": "preparing",
+        "time": "2026-09-21T22:15:25.771Z",
+        "note": "Order marked as preparing"
+      },
+      {
+        "status": "out_for_delivery",
+        "time": "2026-09-21T22:15:37.145Z",
+        "note": "Picked up by rider Gurpreet Singh"
+      },
+      {
+        "status": "completed",
+        "time": "2026-09-21T22:15:57.566Z",
+        "note": "Delivered successfully by Gurpreet Singh"
+      }
+    ],
+    "rider": {
+      "id": "rider-1",
+      "name": "Gurpreet Singh",
+      "phone": "9876500001",
+      "vehicle": "Honda Activa (PB-10-AB-1234)"
+    },
+    "currentLocation": {
+      "lat": 31.435662883930924,
+      "lng": 76.71278394734571,
+      "speed": 25,
+      "heading": 0,
+      "updatedAt": "2026-09-21T22:15:57.571Z"
+    }
+  },
+  {
+    "id": "GK-0921-003",
+    "customerName": "Manpreet Singh",
+    "phone": "9812345678",
+    "orderType": "delivery",
+    "address": "Near Clock Tower, Ludhiana",
+    "tableNumber": "",
+    "notes": "Please call before arrival",
+    "items": [
+      {
+        "id": "ch-3",
+        "name": "Punjabi Masala Chaap",
+        "price": 140,
+        "quantity": 1,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 140
+      },
+      {
+        "id": "bg-2",
+        "name": "Paneer Burger",
+        "price": 80,
+        "quantity": 2,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 160
+      },
+      {
+        "id": "dr-12",
+        "name": "OREO Crush Shake",
+        "price": 80,
+        "quantity": 1,
+        "withIceCream": true,
+        "addonPrice": 20,
+        "itemTotal": 100
+      }
+    ],
+    "subtotal": 400,
+    "deliveryFee": 0,
+    "grandTotal": 400,
+    "paymentMethod": "cod",
+    "paymentStatus": "paid",
+    "status": "completed",
+    "createdAt": "2026-09-21T22:04:06.625Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-21T22:04:06.625Z",
+        "note": "Order placed by customer"
+      },
+      {
+        "status": "out_for_delivery",
+        "time": "2026-09-21T22:04:06.632Z",
+        "note": "Picked up by rider Gurpreet Singh"
+      },
+      {
+        "status": "completed",
+        "time": "2026-09-21T22:04:06.646Z",
+        "note": "Delivered successfully by Gurpreet Singh"
+      },
+      {
+        "status": "out_for_delivery",
+        "time": "2026-09-21T22:06:38.775Z",
+        "note": "Picked up by rider Gurpreet Singh"
+      },
+      {
+        "status": "completed",
+        "time": "2026-09-21T22:06:55.151Z",
+        "note": "Order marked as completed"
+      },
+      {
+        "status": "out_for_delivery",
+        "time": "2026-09-21T22:15:39.860Z",
+        "note": "Picked up by rider Gurpreet Singh"
+      },
+      {
+        "status": "completed",
+        "time": "2026-09-21T22:16:02.940Z",
+        "note": "Delivered successfully by Gurpreet Singh"
+      }
+    ],
+    "rider": {
+      "id": "rider-1",
+      "name": "Gurpreet Singh",
+      "phone": "9876500001",
+      "vehicle": "Honda Activa (PB-10-AB-1234)"
+    },
+    "currentLocation": {
+      "lat": 31.435567927176514,
+      "lng": 76.71282271092298,
+      "speed": 25,
+      "heading": 0,
+      "updatedAt": "2026-09-21T22:15:41.898Z"
+    }
+  },
+  {
+    "id": "GK-0921-002",
+    "customerName": "SUMIT",
+    "phone": "6280876308",
+    "orderType": "delivery",
+    "address": "KHARAR GTB NAGAR",
+    "tableNumber": "",
+    "notes": "NO",
+    "items": [
+      {
+        "id": "ch-1",
+        "name": "Malai Chaap",
+        "price": 140,
+        "quantity": 1,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 140
+      }
+    ],
+    "subtotal": 140,
+    "deliveryFee": 30,
+    "grandTotal": 170,
+    "paymentMethod": "cod",
+    "paymentStatus": "pay_on_delivery",
+    "status": "cancelled",
+    "createdAt": "2026-09-21T21:49:16.237Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-21T21:49:16.237Z",
+        "note": "Order placed by customer"
+      },
+      {
+        "status": "cancelled",
+        "time": "2026-09-21T21:56:51.186Z",
+        "note": "Order marked as cancelled"
+      }
+    ]
+  },
+  {
+    "id": "GK-0921-001",
+    "customerName": "Simran Kaur",
+    "phone": "9876543210",
+    "orderType": "delivery",
+    "address": "House 142, Street 5, Model Town",
+    "tableNumber": "",
+    "notes": "Make chaap extra crispy please",
+    "items": [
+      {
+        "id": "ch-1",
+        "name": "Malai Chaap",
+        "price": 140,
+        "quantity": 2,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 280
+      },
+      {
+        "id": "bg-1",
+        "name": "Aloo Tikki Burger",
+        "price": 50,
+        "quantity": 1,
+        "withIceCream": false,
+        "addonPrice": 0,
+        "itemTotal": 50
+      },
+      {
+        "id": "dr-1",
+        "name": "Mango Crush Shake",
+        "price": 70,
+        "quantity": 1,
+        "withIceCream": true,
+        "addonPrice": 20,
+        "itemTotal": 90
+      }
+    ],
+    "subtotal": 420,
+    "deliveryFee": 0,
+    "grandTotal": 420,
+    "paymentMethod": "upi",
+    "paymentStatus": "pending_verification",
+    "status": "completed",
+    "createdAt": "2026-09-21T21:45:05.671Z",
+    "statusHistory": [
+      {
+        "status": "received",
+        "time": "2026-09-21T21:45:05.671Z",
+        "note": "Order placed by customer"
+      },
+      {
+        "status": "preparing",
+        "time": "2026-09-21T21:45:05.678Z",
+        "note": "Chef started cooking"
+      },
+      {
+        "status": "out_for_delivery",
+        "time": "2026-09-21T21:53:26.882Z",
+        "note": "Order marked as out_for_delivery"
+      },
+      {
+        "status": "completed",
+        "time": "2026-09-21T21:53:27.790Z",
+        "note": "Order marked as completed"
+      }
+    ]
+  }
+]

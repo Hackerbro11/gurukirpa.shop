@@ -1,0 +1,144 @@
+/* Guru Kirpa Fast Food - Custom Styles */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-gold: #F59E0B;
+  --primary-amber: #D97706;
+  --bg-dark: #0A0A0C;
+  --card-dark: #141417;
+  --border-dark: #27272A;
+  --veg-green: #10B981;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-dark);
+  color: #F3F4F6;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, h4, h5, .font-heading {
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #111;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #F59E0B;
+}
+
+/* Gold Gradient Glow */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #FDE68A 0%, #F59E0B 50%, #D97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-glow-btn {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  box-shadow: 0 4px 20px -2px rgba(245, 158, 11, 0.4);
+  transition: all 0.25s ease;
+}
+.gold-glow-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 25px -2px rgba(245, 158, 11, 0.6);
+}
+
+/* Veg Badge Marker */
+.veg-icon {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--veg-green);
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(16, 185, 129, 0.08);
+}
+.veg-icon-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--veg-green);
+  border-radius: 50%;
+}
+
+/* Pulse animation */
+@keyframes softPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.85; }
+}
+.animate-soft-pulse {
+  animation: softPulse 2s infinite ease-in-out;
+}
+
+/* Super Cool Food Card Hover & Neon Accents */
+.cool-food-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(180deg, #18181B 0%, #111113 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.cool-food-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 12px 30px -5px rgba(245, 158, 11, 0.18), 0 0 15px rgba(245, 158, 11, 0.08);
+}
+
+/* Glassmorphism Card */
+.glass-panel {
+  background: rgba(20, 20, 23, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Shimmer animation for special badges */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.bestseller-badge {
+  background: linear-gradient(90deg, #EF4444 0%, #F59E0B 50%, #EF4444 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite linear;
+}
+
+/* Star Rating Interactive Hover */
+.star-btn:hover, .star-btn.active {
+  color: #F59E0B !important;
+  transform: scale(1.15);
+}
+
+/* Thermal Printer & Standard Invoice Styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-kot, #printable-kot * {
+    visibility: visible;
+  }
+  #printable-kot {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 80mm !important;
+    max-width: 80mm !important;
+    padding: 10px;
+    font-family: 'Courier New', monospace !important;
+    font-size: 13px !important;
+    color: #000 !important;
+    background: #fff !important;
+    margin: 0;
+  }
+  .no-print {
+    display: none !important;
+  }
+}

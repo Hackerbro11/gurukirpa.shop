@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Delivery Partner App | Guru Kirpa Fast Food</title>
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  <!-- PWA & Android App Manifest -->
+  <link rel="manifest" href="/manifest-delivery.json">
+  <meta name="theme-color" content="#F59E0B">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="GK Delivery">
+  <link rel="apple-touch-icon" href="/assets/delivery-icon.svg">
+  <link rel="icon" type="image/svg+xml" href="/assets/delivery-icon.svg">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              gold: '#F59E0B',
+              darkgold: '#D97706',
+              dark: '#0A0A0C',
+              card: '#141417',
+              border: '#27272A',
+              veg: '#10B981'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-zinc-950 text-gray-100 min-h-screen flex flex-col font-sans select-none pb-12">
+
+  <!-- Rider PIN Login Modal -->
+  <div id="rider-login-modal" class="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 max-w-sm w-full text-center space-y-5 shadow-2xl">
+      <div class="w-16 h-16 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center mx-auto text-3xl">
+        🛵
+      </div>
+      <div>
+        <h3 class="text-xl font-black text-white">Guru Kirpa Delivery Partner</h3>
+        <p class="text-xs text-gray-400 mt-1">Select your rider profile and enter 4-digit PIN</p>
+      </div>
+
+      <div class="space-y-3 text-left">
+        <div>
+          <label class="block text-xs font-semibold text-gray-400 mb-1">Select Rider Profile</label>
+          <select id="rider-select" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2.5 text-sm text-white font-bold focus:outline-none focus:border-amber-500">
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-400 mb-1">Enter Rider PIN</label>
+          <input type="password" id="rider-pin-input" maxlength="6" placeholder="Enter 4-digit PIN" class="w-full bg-zinc-800 border border-zinc-700 text-center text-2xl tracking-widest font-mono text-amber-400 rounded-xl py-3 focus:outline-none focus:border-amber-500">
+          <p id="rider-login-error" class="text-xs text-red-400 mt-1 hidden">Incorrect PIN. Contact kitchen admin if forgotten.</p>
+        </div>
+
+        <button onclick="loginRider()" class="w-full gold-glow-btn text-black font-extrabold py-3.5 rounded-xl text-sm shadow-lg">
+          Login as Delivery Partner
+        </button>
+
+        <!-- Install App Button on Login -->
+        <button type="button" onclick="triggerPwaInstall()" id="login-install-btn" class="w-full py-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-bold flex items-center justify-center space-x-2 transition">
+          <i data-lucide="download" class="w-4 h-4"></i>
+          <span>📲 Install Rider App On Android Phone</span>
+        </button>
+      </div>
+
+      <p class="text-[11px] text-gray-500">Authorized Delivery Partners Only • Guru Kirpa</p>
+    </div>
+  </div>
+
+  <!-- Rider Mobile Top Header -->
+  <header class="sticky top-0 z-40 bg-zinc-900/95 backdrop-blur-md border-b border-zinc-800 px-4 py-3">
+    <div class="flex items-center justify-between">
+      
+      <div class="flex items-center space-x-2.5">
+        <div class="w-9 h-9 rounded-xl bg-amber-500 text-black flex items-center justify-center font-black text-lg shadow-md">
+          🛵
+        </div>
+        <div>
+          <h2 class="text-sm font-black text-white leading-tight" id="active-rider-name">Delivery Partner</h2>
+          <div class="flex items-center space-x-1.5 mt-0.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping" id="gps-status-dot"></span>
+            <span class="text-[10px] font-bold text-emerald-400 font-mono" id="gps-status-text">LIVE GPS: SHARING</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-2">
+        <!-- Install App Button -->
+        <button onclick="triggerPwaInstall()" id="header-install-btn" title="Install App on Phone" class="px-2.5 py-2 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-400 text-xs font-bold flex items-center space-x-1 border border-amber-500/30 transition">
+          <i data-lucide="download" class="w-3.5 h-3.5"></i>
+          <span class="hidden sm:inline">Install App</span>
+        </button>
+
+        <!-- Change PIN Button -->
+        <button onclick="openRiderPinModal()" title="Change PIN" class="px-2.5 py-2 rounded-xl bg-zinc-800 hover:bg-amber-500/20 text-amber-400 text-xs font-bold flex items-center space-x-1 border border-zinc-700/60 transition">
+          <i data-lucide="key" class="w-3.5 h-3.5"></i>
+          <span class="hidden sm:inline">Change PIN</span>
+        </button>
+
+        <!-- Refresh Feed -->
+        <button onclick="fetchDeliveryOrders()" title="Refresh Feed" class="p-2 rounded-xl bg-zinc-800 text-gray-300 hover:text-white transition">
+          <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Logout -->
+        <button onclick="logoutRider()" title="Logout" class="p-2 rounded-xl bg-zinc-800 text-gray-400 hover:text-red-400 transition">
+          <i data-lucide="log-out" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Rider Change PIN Modal -->
+  <div id="rider-change-pin-modal" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 max-w-sm w-full space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg">
+            🔑
+          </div>
+          <div>
+            <h4 class="font-bold text-sm text-white">Change Rider PIN</h4>
+            <p class="text-[11px] text-gray-400" id="change-pin-rider-name">Delivery Partner</p>
+          </div>
+        </div>
+        <button onclick="closeRiderPinModal()" class="text-gray-400 hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form onsubmit="submitRiderPinChange(event)" class="space-y-3">
+        <div>
+          <label class="block text-xs font-semibold text-gray-400 mb-1">Current 4-Digit PIN</label>
+          <input type="password" id="rider-current-pin" maxlength="6" required placeholder="••••" class="w-full bg-zinc-800 border border-zinc-700 text-center text-xl tracking-widest font-mono text-white rounded-xl py-2.5 focus:outline-none focus:border-amber-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-400 mb-1">New 4-6 Digit PIN</label>
+          <input type="password" id="rider-new-pin" maxlength="6" required placeholder="New PIN (e.g. 1234)" class="w-full bg-zinc-800 border border-zinc-700 text-center text-xl tracking-widest font-mono text-amber-400 rounded-xl py-2.5 focus:outline-none focus:border-amber-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-400 mb-1">Confirm New PIN</label>
+          <input type="password" id="rider-confirm-pin" maxlength="6" required placeholder="Repeat new PIN" class="w-full bg-zinc-800 border border-zinc-700 text-center text-xl tracking-widest font-mono text-amber-400 rounded-xl py-2.5 focus:outline-none focus:border-amber-500">
+        </div>
+
+        <p id="rider-pin-change-error" class="text-xs text-red-400 hidden"></p>
+        <p id="rider-pin-change-success" class="text-xs text-emerald-400 hidden"></p>
+
+        <div class="pt-2 flex space-x-2">
+          <button type="button" onclick="closeRiderPinModal()" class="w-1/2 py-2.5 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-gray-300 text-xs font-bold transition">Cancel</button>
+          <button type="submit" class="w-1/2 gold-glow-btn text-black font-extrabold py-2.5 rounded-xl text-xs transition">Update PIN</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- GPS Simulation & Status Banner -->
+  <div class="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2 flex items-center justify-between text-xs">
+    <div class="flex items-center space-x-1.5 text-amber-300">
+      <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-400"></i>
+      <span id="current-latlng-display">GPS Coordinates: Acquiring...</span>
+    </div>
+    <button onclick="toggleGpsSimulation()" id="simulate-gps-btn" class="px-2 py-0.5 rounded bg-amber-500/20 hover:bg-amber-500/40 text-amber-300 font-bold border border-amber-500/40 text-[10px]">
+      🚗 Demo GPS Sim
+    </button>
+  </div>
+
+  <!-- Orders Container -->
+  <main class="flex-grow p-4 max-w-lg mx-auto w-full space-y-4">
+    
+    <!-- Delivery Tabs: Active vs Completed -->
+    <div class="grid grid-cols-2 gap-2 p-1 bg-zinc-900 rounded-2xl border border-zinc-800 text-xs font-bold">
+      <button type="button" onclick="switchDeliveryTab('active')" id="tab-deliv-active" class="py-2.5 rounded-xl bg-amber-500 text-black shadow flex items-center justify-center space-x-1.5 transition">
+        <span>🛵 Active Queue</span>
+        <span id="delivery-count-badge" class="bg-black/25 text-black px-1.5 py-0.2 rounded-full text-[10px] font-black">0</span>
+      </button>
+      <button type="button" onclick="switchDeliveryTab('completed')" id="tab-deliv-completed" class="py-2.5 rounded-xl text-gray-400 hover:text-white flex items-center justify-center space-x-1.5 transition">
+        <span>✓ Delivered History</span>
+        <span id="completed-count-badge" class="bg-zinc-800 text-gray-300 px-1.5 py-0.2 rounded-full text-[10px] font-bold">0</span>
+      </button>
+    </div>
+
+    <!-- Active Orders List -->
+    <div id="delivery-orders-list" class="space-y-4">
+      <!-- Dynamically injected -->
+      <div class="py-16 text-center text-gray-500 bg-zinc-900/60 rounded-2xl border border-zinc-800 p-6">
+        <i data-lucide="package-check" class="w-10 h-10 mx-auto text-zinc-700 mb-2"></i>
+        <p class="font-bold text-gray-300">No Pending Deliveries</p>
+        <p class="text-xs text-gray-500 mt-1">Orders assigned to you for delivery will appear here!</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- PWA Install Guide Modal -->
+  <div id="pwa-install-guide-modal" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 max-w-sm w-full space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl">
+            📲
+          </div>
+          <div>
+            <h4 class="font-bold text-sm text-white">Install Delivery Partner App</h4>
+            <p class="text-[11px] text-gray-400">Add to Phone Home Screen (APK)</p>
+          </div>
+        </div>
+        <button onclick="closeInstallGuide()" class="text-gray-400 hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs text-gray-300">
+        <p class="text-amber-400 font-semibold">📱 Android Phone Pe Install Kaise Karein:</p>
+        <ol class="list-decimal list-inside space-y-2 text-gray-400 leading-relaxed text-[11px]">
+          <li>Apne phone ke <b>Chrome Browser</b> mein yeh page kholein.</li>
+          <li>Top-right mein <b>3 Dots (⋮)</b> menu par tap karein.</li>
+          <li><b>"Add to Home screen"</b> ya <b>"Install app"</b> par click karein.</li>
+          <li>Phone ki home screen par <b>🛵 Guru Kirpa Rider</b> app ban jayegi, jo bina kisi browser ke direct app ki tarah open hogi!</li>
+        </ol>
+      </div>
+
+      <button onclick="closeInstallGuide()" class="w-full gold-glow-btn text-black font-extrabold py-2.5 rounded-xl text-xs">
+        Samajh Gaya (OK)
+      </button>
+    </div>
+  </div>
+
+  <!-- Sound Audio for New Job alerts -->
+  <audio id="rider-chime-audio" src="" preload="auto"></audio>
+
+  <script src="/js/delivery.js"></script>
+</body>
+</html>

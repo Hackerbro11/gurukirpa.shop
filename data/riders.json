@@ -1,0 +1,29 @@
+[
+  {
+    "id": "rider-1",
+    "name": "Gurpreet Singh",
+    "phone": "9876500001",
+    "pin": "7142",
+    "vehicle": "Honda Activa (PB-10-AB-1234)",
+    "status": "available",
+    "rating": "4.9"
+  },
+  {
+    "id": "rider-2",
+    "name": "Harpreet (Happy)",
+    "phone": "9876500002",
+    "pin": "8391",
+    "vehicle": "Hero Splendor (PB-10-CD-5678)",
+    "status": "available",
+    "rating": "4.8"
+  },
+  {
+    "id": "rider-3",
+    "name": "Aman Verma",
+    "phone": "9876500003",
+    "pin": "9254",
+    "vehicle": "TVS Jupiter (PB-10-EF-9012)",
+    "status": "available",
+    "rating": "5.0"
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "name": "Guru Kirpa Delivery Partner",
+  "short_name": "GK Rider",
+  "description": "Guru Kirpa Fast Food - Delivery Partner & Live GPS Tracking App",
+  "start_url": "/delivery",
+  "id": "/delivery",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#09090b",
+  "theme_color": "#F59E0B",
+  "categories": ["business", "food", "navigation"],
+  "icons": [
+    {
+      "src": "/assets/delivery-icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guru Kirpa Fast Food | Har Bite Me Hai Kirpa ❤️</title>
+  <meta name="description" content="Guru Kirpa Fast Food - 100% Pure Veg Chaap, Burgers, Shakes, Fast Food & Pani Puri. Order online for fast delivery!">
+  <link rel="stylesheet" href="/css/custom.css">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Leaflet.js for Live Map Tracking -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Local Pure JS QR Code Generator -->
+  <script src="/js/qrcode.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              gold: '#F59E0B',
+              darkgold: '#D97706',
+              dark: '#0A0A0C',
+              card: '#141417',
+              border: '#27272A',
+              veg: '#10B981'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-brand-dark text-gray-100 min-h-screen flex flex-col selection:bg-brand-gold selection:text-black">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 text-black text-xs sm:text-sm font-semibold py-1.5 px-4 text-center flex items-center justify-center space-x-2 shadow-sm">
+    <span>✨ 100% PURE VEG FAST FOOD</span>
+    <span class="hidden sm:inline">•</span>
+    <span class="hidden sm:inline">HAR BITE ME HAI KIRPA ❤️</span>
+    <span>•</span>
+    <span>Call/WhatsApp: <a href="tel:6239591644" class="underline font-bold">6239591644</a></span>
+  </div>
+
+  <!-- Main Navbar -->
+  <header class="sticky top-0 z-40 bg-brand-dark/95 backdrop-blur-md border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="/" class="flex items-center space-x-3 group">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-500 to-yellow-300 p-0.5 flex items-center justify-center shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
+          <div class="w-full h-full bg-brand-card rounded-[10px] flex items-center justify-center">
+            <span class="text-2xl">🍔</span>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight gold-gradient-text">GURU KIRPA</h1>
+            <div class="veg-icon" title="100% Pure Vegetarian">
+              <div class="veg-icon-dot"></div>
+            </div>
+          </div>
+          <p class="text-xs text-amber-400/80 font-medium">FAST FOOD • Har Bite Me Hai Kirpa</p>
+        </div>
+      </a>
+
+      <!-- Right Actions -->
+      <div class="flex items-center space-x-2 sm:space-x-4">
+        
+        <!-- View Flyer Modal Trigger -->
+        <button onclick="openFlyerModal()" class="hidden md:flex items-center space-x-1 px-3 py-2 rounded-lg bg-zinc-800/80 hover:bg-zinc-700 text-xs font-medium text-amber-400 border border-zinc-700 transition">
+          <i data-lucide="image" class="w-4 h-4"></i>
+          <span>View Menu Flyer</span>
+        </button>
+
+        <!-- Track Active Order -->
+        <button onclick="openTrackModal()" id="track-order-nav-btn" class="hidden sm:flex items-center space-x-1.5 px-3.5 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-xs font-semibold text-gray-200 border border-zinc-700 transition">
+          <i data-lucide="map-pin" class="w-4 h-4 text-amber-500"></i>
+          <span>Track Order</span>
+        </button>
+
+        <!-- Delivery Partner / Rider App Link -->
+        <a href="/delivery" target="_blank" class="flex items-center space-x-1 px-3 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-xs text-emerald-400 hover:text-emerald-300 border border-zinc-800 transition">
+          <i data-lucide="bike" class="w-4 h-4 text-emerald-400"></i>
+          <span class="hidden sm:inline">Rider App</span>
+        </a>
+
+        <!-- Admin Portal Link -->
+        <a href="/admin" target="_blank" class="flex items-center space-x-1 px-3 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-xs text-gray-400 hover:text-amber-400 border border-zinc-800 transition">
+          <i data-lucide="shield" class="w-4 h-4 text-amber-500"></i>
+          <span class="hidden sm:inline">Kitchen Admin</span>
+        </a>
+
+        <!-- Cart Button -->
+        <button onclick="toggleCartDrawer()" class="relative gold-glow-btn text-black font-bold px-4 py-2.5 rounded-xl flex items-center space-x-2">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          <span class="hidden sm:inline">Cart</span>
+          <span id="cart-total-nav" class="font-extrabold text-sm ml-1">₹0</span>
+          <span id="cart-count-badge" class="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center ring-2 ring-brand-dark">0</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-brand-card to-brand-dark border-b border-brand-border py-8 sm:py-12">
+    <!-- Ambient glowing circle -->
+    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Left Content -->
+        <div class="lg:col-span-7 space-y-4 text-center lg:text-left">
+          
+          <div class="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/30 px-3.5 py-1.5 rounded-full text-xs font-semibold text-amber-400">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span>KITCHEN IS OPEN • TAKING ORDERS</span>
+          </div>
+
+          <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+            Delicious Bites, <br class="hidden sm:inline"/>
+            <span class="gold-gradient-text">Har Bite Me Kirpa!</span>
+          </h2>
+
+          <p class="text-sm sm:text-base text-gray-400 max-w-xl mx-auto lg:mx-0">
+            Experience the finest Punjabi Chaap, Crispy Loaded Burgers, Chilled Shakes, Spicy Rolls, and Watery Tangy Pani Puri — 100% Pure Vegetarian with lightning fast doorstep delivery.
+          </p>
+
+          <!-- Badges from Flyer -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 max-w-lg mx-auto lg:mx-0 text-left">
+            <div class="bg-zinc-900/80 border border-zinc-800 rounded-lg p-2.5 flex items-center space-x-2">
+              <span class="text-xl">🌿</span>
+              <div>
+                <p class="text-[11px] font-bold text-gray-200">100% Pure Veg</p>
+                <p class="text-[9px] text-gray-400">Guaranteed Fresh</p>
+              </div>
+            </div>
+            <div class="bg-zinc-900/80 border border-zinc-800 rounded-lg p-2.5 flex items-center space-x-2">
+              <span class="text-xl">⚡</span>
+              <div>
+                <p class="text-[11px] font-bold text-gray-200">Fast Delivery</p>
+                <p class="text-[9px] text-gray-400">Hot & Fresh</p>
+              </div>
+            </div>
+            <div class="bg-zinc-900/80 border border-zinc-800 rounded-lg p-2.5 flex items-center space-x-2">
+              <span class="text-xl">✨</span>
+              <div>
+                <p class="text-[11px] font-bold text-gray-200">Hygienic</p>
+                <p class="text-[9px] text-gray-400">Top Quality</p>
+              </div>
+            </div>
+            <div class="bg-zinc-900/80 border border-zinc-800 rounded-lg p-2.5 flex items-center space-x-2">
+              <span class="text-xl">🍦</span>
+              <div>
+                <p class="text-[11px] font-bold text-gray-200">Ice Cream</p>
+                <p class="text-[9px] text-gray-400">Available All Shakes</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
+            <a href="#menu-section" class="gold-glow-btn text-black font-bold px-6 py-3 rounded-xl flex items-center space-x-2">
+              <span>Explore Menu</span>
+              <i data-lucide="arrow-down" class="w-4 h-4"></i>
+            </a>
+            <a href="https://wa.me/916239591644?text=Hello%20Guru%20Kirpa%20Fast%20Food!%20I%20want%20to%20place%20an%20order." target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-5 py-3 rounded-xl flex items-center space-x-2 transition shadow-lg shadow-emerald-900/30">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              <span>WhatsApp Us</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right Visual Poster Card -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative group cursor-pointer" onclick="openFlyerModal()">
+            <div class="absolute -inset-1 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-2xl blur-lg opacity-40 group-hover:opacity-75 transition duration-500"></div>
+            <div class="relative bg-zinc-900 rounded-2xl overflow-hidden border border-amber-500/30 shadow-2xl max-w-xs sm:max-w-sm">
+              <img src="/assets/flyer.jpg" alt="Guru Kirpa Fast Food Flyer" class="w-full h-auto object-cover transform group-hover:scale-102 transition duration-300">
+              <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/80 to-transparent p-4 flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold text-amber-400 uppercase tracking-wide">Official Menu</span>
+                  <p class="text-xs text-gray-300">Click to expand flyer</p>
+                </div>
+                <span class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 text-xs font-medium border border-amber-500/40">Zoom</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky Categories & Search Bar -->
+  <section id="menu-section" class="sticky top-20 z-30 bg-brand-dark/95 backdrop-blur-md border-b border-brand-border py-3 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+      
+      <!-- Category Pills -->
+      <div class="flex items-center space-x-2 overflow-x-auto pb-1 sm:pb-0 no-scrollbar" id="category-pills">
+        <button onclick="filterCategory('all')" class="cat-pill active px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition bg-amber-500 text-black shadow-md">
+          🔥 All Items
+        </button>
+        <button onclick="filterCategory('Chaap')" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition bg-zinc-900 hover:bg-zinc-800 text-gray-300 border border-zinc-800">
+          🍢 Chaap & Tikka
+        </button>
+        <button onclick="filterCategory('Burger')" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition bg-zinc-900 hover:bg-zinc-800 text-gray-300 border border-zinc-800">
+          🍔 Burgers
+        </button>
+        <button onclick="filterCategory('Drink Crush')" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition bg-zinc-900 hover:bg-zinc-800 text-gray-300 border border-zinc-800">
+          🥤 Drink Crush (12 Shakes)
+        </button>
+        <button onclick="filterCategory('Fast Food')" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition bg-zinc-900 hover:bg-zinc-800 text-gray-300 border border-zinc-800">
+          🌯 Fast Food & Rolls
+        </button>
+        <button onclick="filterCategory('Pani Puri')" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition bg-zinc-900 hover:bg-zinc-800 text-gray-300 border border-zinc-800">
+          🍲 Pani Puri & Chaat
+        </button>
+      </div>
+
+      <!-- Search Box -->
+      <div class="relative min-w-[240px]">
+        <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+        <input type="text" id="search-input" oninput="handleSearch()" placeholder="Search chaap, burger, shake..." class="w-full bg-zinc-900 border border-zinc-700 rounded-xl pl-9 pr-4 py-2 text-xs sm:text-sm text-gray-100 placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Menu Items Grid -->
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+    
+    <!-- Active Category Header -->
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h3 id="current-category-title" class="text-xl sm:text-2xl font-bold text-white flex items-center space-x-2">
+          <span>All Menu Items</span>
+          <span id="items-count-badge" class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-zinc-800 text-amber-400 border border-zinc-700">0 items</span>
+        </h3>
+        <p class="text-xs text-gray-400 mt-1">Freshly prepared on order • 100% Pure Vegetarian</p>
+      </div>
+    </div>
+
+    <!-- Items Grid -->
+    <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+      <!-- Injected via JavaScript -->
+      <div class="col-span-full py-12 text-center text-gray-500">
+        <i data-lucide="loader-2" class="w-8 h-8 animate-spin mx-auto text-amber-500 mb-2"></i>
+        <p>Loading fresh delicious menu...</p>
+      </div>
+    </div>
+
+    <!-- Customer Reviews & Feedback Section -->
+    <section class="mt-16 pt-10 border-t border-brand-border">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="text-2xl">⭐</span>
+            <h3 class="text-2xl sm:text-3xl font-black text-white tracking-tight">Customer Love & Feedback</h3>
+          </div>
+          <p class="text-xs text-amber-400 font-semibold mt-1">4.9 / 5.0 Rating • 100% Pure Veg Fast Food Delight</p>
+        </div>
+
+        <button onclick="openReviewModal()" class="gold-glow-btn text-black font-extrabold px-5 py-2.5 rounded-xl text-xs flex items-center space-x-2 shadow-lg">
+          <i data-lucide="pen-line" class="w-4 h-4"></i>
+          <span>Share Your Feedback</span>
+        </button>
+      </div>
+
+      <!-- Reviews Carousel / Grid -->
+      <div id="customer-reviews-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Write Review Modal -->
+  <div id="review-modal" class="fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="bg-zinc-950 border border-zinc-800 w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4">
+      <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
+        <div>
+          <h4 class="font-bold text-lg text-white">Rate Your Food Experience</h4>
+          <p class="text-xs text-amber-400">Guru Kirpa Fast Food • Har Bite Me Hai Kirpa ❤️</p>
+        </div>
+        <button onclick="closeReviewModal()" class="text-gray-400 hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form id="review-form" onsubmit="submitCustomerReview(event)" class="space-y-4">
+        <!-- Star Rating Picker -->
+        <div class="text-center py-2 bg-zinc-900/60 rounded-2xl border border-zinc-800">
+          <p class="text-xs text-gray-400 mb-2">Tap stars to rate:</p>
+          <div class="flex justify-center space-x-2 text-2xl text-zinc-600" id="star-picker">
+            <button type="button" onclick="setRating(1)" class="star-btn transition">★</button>
+            <button type="button" onclick="setRating(2)" class="star-btn transition">★</button>
+            <button type="button" onclick="setRating(3)" class="star-btn transition">★</button>
+            <button type="button" onclick="setRating(4)" class="star-btn transition">★</button>
+            <button type="button" onclick="setRating(5)" class="star-btn transition">★</button>
+          </div>
+          <input type="hidden" id="review-rating-val" value="5">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">Your Name *</label>
+          <input type="text" id="review-name" required placeholder="e.g. Jaswinder Singh" class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">What dish did you like most?</label>
+          <input type="text" id="review-item" placeholder="e.g. Malai Chaap, Aloo Tikki Burger" class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">Your Review / Feedback *</label>
+          <textarea id="review-comment" required rows="3" placeholder="Tell us how the food tasted and your delivery experience!" class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500"></textarea>
+        </div>
+
+        <div class="pt-2 flex space-x-3">
+          <button type="button" onclick="closeReviewModal()" class="w-1/3 py-2.5 rounded-xl bg-zinc-800 text-gray-300 text-xs font-bold">Cancel</button>
+          <button type="submit" class="w-2/3 gold-glow-btn text-black font-extrabold py-2.5 rounded-xl text-xs">Submit Review ⭐</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Floating Mobile Cart Bar -->
+  <div id="mobile-floating-cart" class="fixed bottom-4 inset-x-4 z-30 md:hidden transition-transform transform translate-y-28 duration-300">
+    <button onclick="toggleCartDrawer()" class="w-full gold-glow-btn text-black font-extrabold px-5 py-3.5 rounded-2xl flex items-center justify-between shadow-2xl">
+      <div class="flex items-center space-x-2">
+        <div class="bg-black/20 text-black px-2.5 py-1 rounded-lg text-xs font-black" id="mobile-cart-badge">0 Items</div>
+        <span class="text-sm">View Your Order</span>
+      </div>
+      <div class="flex items-center space-x-1 text-base">
+        <span id="mobile-cart-total">₹0</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </div>
+    </button>
+  </div>
+
+  <!-- Cart Slide-Over Drawer -->
+  <div id="cart-drawer-overlay" onclick="toggleCartDrawer()" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <div id="cart-drawer" class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-zinc-950 border-l border-zinc-800 z-50 transform translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
+    
+    <!-- Drawer Header -->
+    <div class="p-4 border-b border-zinc-800 flex items-center justify-between bg-zinc-900/60">
+      <div class="flex items-center space-x-2">
+        <i data-lucide="shopping-bag" class="w-5 h-5 text-amber-500"></i>
+        <h3 class="font-bold text-lg text-white">Your Food Basket</h3>
+      </div>
+      <button onclick="toggleCartDrawer()" class="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-zinc-800 transition">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Free Delivery Progress Tracker -->
+    <div class="p-3 bg-amber-500/10 border-b border-amber-500/20" id="delivery-progress-container">
+      <div class="flex items-center justify-between text-xs mb-1.5 font-medium">
+        <span id="delivery-progress-text" class="text-amber-300">Add ₹150 more for FREE Delivery!</span>
+        <span class="text-amber-400 font-bold">🚚 Fast Delivery</span>
+      </div>
+      <div class="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+        <div id="delivery-progress-bar" class="h-full bg-gradient-to-r from-amber-500 to-yellow-400 transition-all duration-300" style="width: 40%"></div>
+      </div>
+    </div>
+
+    <!-- Cart Items List -->
+    <div id="cart-items-container" class="flex-grow overflow-y-auto p-4 space-y-3">
+      <!-- Items dynamically rendered -->
+      <div class="py-16 text-center text-gray-500">
+        <i data-lucide="shopping-cart" class="w-12 h-12 mx-auto text-zinc-700 mb-2"></i>
+        <p class="font-semibold text-gray-400">Your basket is empty</p>
+        <p class="text-xs text-gray-600 mt-1">Add some delicious chaap, burger or shakes!</p>
+      </div>
+    </div>
+
+    <!-- Cart Footer & Checkout Action -->
+    <div class="p-4 border-t border-zinc-800 bg-zinc-900/60 space-y-3">
+      
+      <!-- Bill Breakdown -->
+      <div class="space-y-1.5 text-xs text-gray-300">
+        <div class="flex justify-between">
+          <span>Subtotal</span>
+          <span id="cart-subtotal" class="font-semibold text-white">₹0</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Delivery Charges</span>
+          <span id="cart-delivery-fee" class="font-semibold text-emerald-400">₹30</span>
+        </div>
+        <div class="flex justify-between text-sm font-extrabold text-white pt-2 border-t border-zinc-800">
+          <span>Grand Total</span>
+          <span id="cart-grand-total" class="text-amber-400 text-lg">₹0</span>
+        </div>
+      </div>
+
+      <!-- Checkout Button -->
+      <button onclick="openCheckoutModal()" id="checkout-btn" disabled class="w-full gold-glow-btn disabled:opacity-50 disabled:cursor-not-allowed text-black font-extrabold py-3.5 rounded-xl flex items-center justify-center space-x-2 text-sm shadow-lg">
+        <span>Proceed to Order</span>
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </button>
+
+      <p class="text-[10px] text-center text-gray-500 flex items-center justify-center space-x-1">
+        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i>
+        <span>100% Pure Veg • Safe Packing • Instant Confirmation</span>
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- Checkout Modal -->
+  <div id="checkout-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="bg-zinc-950 border border-zinc-800 w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl transform scale-95 transition-transform duration-200 flex flex-col max-h-[90vh]">
+      
+      <div class="p-4 border-b border-zinc-800 flex items-center justify-between bg-zinc-900/70">
+        <div>
+          <h3 class="font-bold text-lg text-white">Complete Your Order</h3>
+          <p class="text-xs text-amber-400">Guru Kirpa Fast Food • Har Bite Me Kirpa</p>
+        </div>
+        <button onclick="closeCheckoutModal()" class="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-zinc-800">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-5 overflow-y-auto space-y-4">
+        
+        <!-- Order Type Selector -->
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 uppercase mb-1.5">Order Type</label>
+          <div class="grid grid-cols-3 gap-2">
+            <button type="button" onclick="setOrderType('delivery')" id="type-btn-delivery" class="order-type-btn active py-2.5 px-3 rounded-xl border text-xs font-bold flex flex-col items-center space-y-1 bg-amber-500/20 border-amber-500 text-amber-300">
+              <i data-lucide="bike" class="w-4 h-4"></i>
+              <span>Doorstep Delivery</span>
+            </button>
+            <button type="button" onclick="setOrderType('takeaway')" id="type-btn-takeaway" class="order-type-btn py-2.5 px-3 rounded-xl border text-xs font-semibold flex flex-col items-center space-y-1 bg-zinc-900 border-zinc-700 text-gray-300">
+              <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+              <span>Takeaway / Pickup</span>
+            </button>
+            <button type="button" onclick="setOrderType('dinein')" id="type-btn-dinein" class="order-type-btn py-2.5 px-3 rounded-xl border text-xs font-semibold flex flex-col items-center space-y-1 bg-zinc-900 border-zinc-700 text-gray-300">
+              <i data-lucide="utensils" class="w-4 h-4"></i>
+              <span>Dine-In Table</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Customer Name & Phone -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-gray-300 mb-1">Your Full Name *</label>
+            <input type="text" id="cust-name" placeholder="e.g. Rahul Sharma" required class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-gray-300 mb-1">WhatsApp Phone Number *</label>
+            <input type="tel" id="cust-phone" placeholder="e.g. 9876543210" required class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+          </div>
+        </div>
+
+        <!-- Address or Table -->
+        <div id="address-field-container">
+          <label class="block text-xs font-medium text-gray-300 mb-1">Complete Delivery Address *</label>
+          <textarea id="cust-address" rows="2" placeholder="House/Flat No., Street, Landmark, Area" class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500"></textarea>
+        </div>
+
+        <div id="table-field-container" class="hidden">
+          <label class="block text-xs font-medium text-gray-300 mb-1">Table Number</label>
+          <input type="text" id="cust-table" placeholder="e.g. Table 4" class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+        </div>
+
+        <!-- Cooking Notes -->
+        <div>
+          <label class="block text-xs font-medium text-gray-300 mb-1">Special Cooking Instructions (Optional)</label>
+          <input type="text" id="cust-notes" placeholder="e.g. Less spicy, extra onions, disposable spoons" class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+        </div>
+
+        <!-- Payment Method -->
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 uppercase mb-1.5">Select Payment Option</label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="payment-card border border-amber-500/50 bg-amber-500/10 p-3 rounded-xl flex items-center space-x-3 cursor-pointer">
+              <input type="radio" name="payment-method" value="upi" checked class="accent-amber-500 w-4 h-4">
+              <div>
+                <p class="text-xs font-bold text-white flex items-center space-x-1">
+                  <span>Instant UPI QR</span>
+                  <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded font-bold">Fast</span>
+                </p>
+                <p class="text-[10px] text-gray-400">GPay, PhonePe, Paytm</p>
+              </div>
+            </label>
+
+            <label class="payment-card border border-zinc-700 bg-zinc-900 p-3 rounded-xl flex items-center space-x-3 cursor-pointer">
+              <input type="radio" name="payment-method" value="cod" class="accent-amber-500 w-4 h-4">
+              <div>
+                <p class="text-xs font-bold text-white">Cash On Delivery</p>
+                <p class="text-[10px] text-gray-400">Pay cash on arrival</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Dynamic UPI QR Display Box (shown when UPI is selected) -->
+        <div id="upi-qr-box" class="p-4 bg-zinc-900 border border-zinc-800 rounded-2xl text-center space-y-3 shadow-xl">
+          <div class="flex items-center justify-between px-1">
+            <p class="text-xs font-bold text-amber-400 flex items-center space-x-1">
+              <span>⚡ Scan & Pay via UPI</span>
+            </p>
+            <span class="text-[10px] bg-emerald-500/20 text-emerald-400 font-bold px-2 py-0.5 rounded-full border border-emerald-500/40">GPay • PhonePe • Paytm</span>
+          </div>
+
+          <!-- Pure Local Client-Side QR Canvas Container -->
+          <div class="flex flex-col items-center justify-center py-2">
+            <div id="upi-qr-canvas-container" class="bg-white p-3 rounded-2xl shadow-xl border-2 border-amber-500/40 inline-flex items-center justify-center min-w-[170px] min-h-[170px]">
+              <!-- Dynamically generated locally by qrcode.min.js -->
+            </div>
+            <p class="text-[11px] text-gray-400 mt-2">Scan this QR with any UPI payment app</p>
+          </div>
+
+          <!-- Direct Mobile UPI App Button & Copy Box -->
+          <div class="space-y-2 pt-1">
+            <a id="pay-upi-direct-btn" href="#" class="w-full py-2.5 px-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white rounded-xl text-xs font-black flex items-center justify-center space-x-2 shadow-md transition">
+              <span>📱 Tap to Open UPI App (PhonePe / GPay / Paytm)</span>
+            </a>
+
+            <div class="flex items-center justify-between bg-zinc-950 px-3 py-2 rounded-xl border border-zinc-800 text-xs">
+              <span class="text-gray-400 font-mono text-[11px]">UPI: <strong class="text-white" id="store-upi-id">6239591644@okbizaxis</strong></span>
+              <button type="button" onclick="copyUPIId()" class="text-amber-400 hover:text-amber-300 font-bold text-[11px] bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/30">
+                📋 Copy
+              </button>
+            </div>
+
+            <!-- Optional UPI Ref/UTR No -->
+            <div class="text-left pt-1">
+              <label class="block text-[10px] uppercase font-bold text-gray-400 mb-1">Enter 12-Digit UPI Ref / UTR No (Optional)</label>
+              <input type="text" id="cust-upi-ref" maxlength="12" placeholder="e.g. 426712345678" class="w-full bg-zinc-950 border border-zinc-700 rounded-xl px-3 py-2 text-xs font-mono text-amber-400 placeholder-zinc-600 focus:outline-none focus:border-amber-500">
+              <p class="text-[10px] text-gray-500 mt-0.5">Found in your GPay/PhonePe payment receipt under 'UPI transaction ID'.</p>
+            </div>
+          </div>
+
+          <p class="text-[11px] text-gray-500">Pay exact total: <span class="text-white font-bold" id="checkout-qr-amount">₹0</span></p>
+        </div>
+
+        <!-- Order Summary Brief -->
+        <div class="p-3 bg-zinc-900/50 rounded-xl border border-zinc-800 text-xs flex justify-between items-center">
+          <span class="text-gray-400">Total Payable Amount:</span>
+          <span id="checkout-modal-total" class="text-amber-400 font-extrabold text-base">₹0</span>
+        </div>
+
+      </div>
+
+      <!-- Action Button -->
+      <div class="p-4 border-t border-zinc-800 bg-zinc-900/80 flex items-center space-x-3">
+        <button type="button" onclick="closeCheckoutModal()" class="w-1/3 py-3 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-xs font-bold text-gray-300 transition">
+          Back
+        </button>
+        <button type="button" onclick="submitOrder()" id="place-order-btn" class="w-2/3 gold-glow-btn text-black font-extrabold py-3 rounded-xl text-sm flex items-center justify-center space-x-2 shadow-lg">
+          <span>Confirm & Place Order</span>
+          <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Order Success & Live Tracking Modal -->
+  <div id="tracking-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="bg-zinc-950 border border-zinc-800 w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl transform scale-95 transition-transform duration-200 flex flex-col">
+      
+      <div class="p-4 border-b border-zinc-800 flex items-center justify-between bg-zinc-900/70">
+        <div class="flex items-center space-x-2">
+          <div class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></div>
+          <h3 class="font-bold text-base text-white">Live Kitchen Tracking</h3>
+        </div>
+        <button onclick="closeTrackModal()" class="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-zinc-800">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-6 text-center" id="tracking-content">
+        <!-- Rendered dynamically -->
+        <div>
+          <div class="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="check" class="w-8 h-8"></i>
+          </div>
+          <h4 class="text-xl font-black text-white">Order Received!</h4>
+          <p class="text-xs text-amber-400 font-mono mt-1" id="track-order-id">#GK-...</p>
+          <div class="mt-2 flex justify-center">
+            <span id="track-payment-status" class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30">
+              💳 Payment: Checking...
+            </span>
+          </div>
+        </div>
+
+        <!-- 4-Step Progress -->
+        <div class="space-y-3 text-left max-w-xs mx-auto py-2">
+          
+          <div class="flex items-center space-x-3" id="step-received">
+            <div class="w-8 h-8 rounded-full bg-emerald-500 text-black font-bold flex items-center justify-center text-xs">✓</div>
+            <div>
+              <p class="text-xs font-bold text-white">Order Placed</p>
+              <p class="text-[10px] text-gray-400">Kitchen notified instantly</p>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-3" id="step-preparing">
+            <div class="w-8 h-8 rounded-full bg-zinc-800 text-gray-400 font-bold flex items-center justify-center text-xs">2</div>
+            <div>
+              <p class="text-xs font-bold text-gray-400">In the Kitchen</p>
+              <p class="text-[10px] text-gray-500">Chef is preparing your food</p>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-3" id="step-out_for_delivery">
+            <div class="w-8 h-8 rounded-full bg-zinc-800 text-gray-400 font-bold flex items-center justify-center text-xs">3</div>
+            <div>
+              <p class="text-xs font-bold text-gray-400">Out for Delivery</p>
+              <p class="text-[10px] text-gray-500">Rider is on the way</p>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-3" id="step-completed">
+            <div class="w-8 h-8 rounded-full bg-zinc-800 text-gray-400 font-bold flex items-center justify-center text-xs">4</div>
+            <div>
+              <p class="text-xs font-bold text-gray-400">Delivered</p>
+              <p class="text-[10px] text-gray-500">Enjoy your meal!</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Post-Delivery Review Auto-Prompt -->
+        <div id="post-delivery-review-prompt" class="hidden p-3.5 bg-gradient-to-r from-amber-500/20 via-amber-500/10 to-yellow-500/20 border border-amber-500/40 rounded-2xl text-center space-y-2 shadow-lg">
+          <p class="text-sm font-black text-amber-400">🎉 Order Delivered! Enjoy your meal!</p>
+          <p class="text-xs text-gray-300">How was the taste and delivery? Rate your experience:</p>
+          <button type="button" onclick="openReviewModalFromOrder()" class="gold-glow-btn text-black font-black px-5 py-2.5 rounded-xl text-xs shadow-lg inline-flex items-center space-x-1.5">
+            <span>⭐ Share Quick 5-Star Review</span>
+          </button>
+        </div>
+
+        <!-- Live GPS Delivery Map Container -->
+        <div id="live-map-wrapper" class="space-y-2 text-left pt-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-white flex items-center space-x-1.5">
+              <i data-lucide="map-pin" class="w-4 h-4 text-amber-400"></i>
+              <span>Live GPS Delivery Map</span>
+            </span>
+            <span id="rider-eta-badge" class="bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center space-x-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+              <span id="rider-status-tag">Rider Assigned</span>
+            </span>
+          </div>
+
+          <!-- The Leaflet Map Canvas -->
+          <div id="customer-live-map" class="w-full h-48 rounded-2xl overflow-hidden border border-zinc-700 shadow-inner bg-zinc-900 z-10"></div>
+
+          <!-- Rider Contact & Profile Info -->
+          <div id="rider-profile-card" class="p-3 bg-zinc-900 rounded-xl border border-zinc-800 flex items-center justify-between text-xs">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-9 h-9 rounded-xl bg-amber-500 text-black flex items-center justify-center font-black text-base shadow">🛵</div>
+              <div>
+                <p class="font-bold text-white text-xs" id="track-rider-name">Delivery Partner</p>
+                <p class="text-[10px] text-gray-400 font-mono" id="track-rider-vehicle">Live GPS Tracking Active</p>
+              </div>
+            </div>
+            <div class="flex items-center space-x-1.5">
+              <a id="track-rider-call" href="tel:6239591644" class="px-2.5 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-gray-200 text-xs font-bold flex items-center space-x-1">
+                <i data-lucide="phone" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>Call</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- WhatsApp Dispatch CTA -->
+        <div class="pt-2 space-y-2">
+          <a id="whatsapp-order-link" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-4 rounded-xl flex items-center justify-center space-x-2 text-sm shadow-lg shadow-emerald-900/30 transition">
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
+            <span>Send Order to WhatsApp (6239591644)</span>
+          </a>
+          <p class="text-[11px] text-gray-400">Tap above to send this order details directly to restaurant WhatsApp!</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Full Flyer Preview Modal -->
+  <div id="flyer-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="relative max-w-xl max-h-[90vh] overflow-auto bg-zinc-900 rounded-2xl border border-zinc-800 p-2 shadow-2xl">
+      <button onclick="closeFlyerModal()" class="absolute top-4 right-4 bg-black/80 hover:bg-black text-white p-2 rounded-full z-10">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <img src="/assets/flyer.jpg" alt="Guru Kirpa Fast Food Flyer" class="w-full h-auto rounded-xl">
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-zinc-950 border-t border-brand-border py-8 mt-12 text-gray-400 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      
+      <div class="flex items-center space-x-3">
+        <span class="text-2xl">🍔</span>
+        <div>
+          <p class="font-bold text-white text-sm">GURU KIRPA FAST FOOD</p>
+          <p class="text-amber-400/80">Har Bite Me Hai Kirpa ❤️ • 100% Pure Veg</p>
+        </div>
+      </div>
+
+      <div class="text-center md:text-right space-y-1">
+        <p>Order Phone: <a href="tel:6239591644" class="text-amber-400 font-bold hover:underline">6239591644</a></p>
+        <p>Fresh & Hygienic Ingredients • Quality Food Every Time</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- App Script -->
+  <script src="/js/app.js"></script>
+</body>
+</html>

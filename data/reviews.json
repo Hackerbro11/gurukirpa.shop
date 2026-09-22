@@ -1,0 +1,47 @@
+[
+  {
+    "id": "rev-1790029032087",
+    "name": "Harmanjot Singh",
+    "rating": 5,
+    "comment": "Ordered Chaap Burger and Green Apple Crush Shake. Packaging was top-notch and arrived piping hot. Truly Har Bite Me Kirpa! ⭐⭐⭐⭐⭐",
+    "itemLiked": "Chaap Burger",
+    "date": "2026-09-21",
+    "verified": true
+  },
+  {
+    "id": "rev-1",
+    "name": "Amanpreet Kaur",
+    "rating": 5,
+    "comment": "Best Malai Chaap in town! It melts in the mouth and the cashew cream gravy is phenomenal. Arrived boiling hot in 20 mins! ❤️",
+    "date": "2026-09-20",
+    "itemLiked": "Malai Chaap",
+    "verified": true
+  },
+  {
+    "id": "rev-2",
+    "name": "Rajesh Kumar",
+    "rating": 5,
+    "comment": "Their Aloo Tikki Burger and OREO Crush Shake combo is unbeatable! Pure veg, super clean packing, and live rider tracking on map is amazing.",
+    "date": "2026-09-21",
+    "itemLiked": "OREO Crush Shake",
+    "verified": true
+  },
+  {
+    "id": "rev-3",
+    "name": "Simran Gill",
+    "rating": 5,
+    "comment": "Pani Puri was super fresh, crispy and the teekha mint water was mouthwatering! 100% genuine street food taste with high hygiene.",
+    "date": "2026-09-21",
+    "itemLiked": "Pani Puri (12 Pcs)",
+    "verified": true
+  },
+  {
+    "id": "rev-4",
+    "name": "Jaswinder Singh",
+    "rating": 5,
+    "comment": "Har Bite Me Hai Kirpa! Ordered Paneer Roll and Mango Shake with extra ice cream. Quantity and quality both 10/10.",
+    "date": "2026-09-22",
+    "itemLiked": "Paneer Roll",
+    "verified": true
+  }
+]

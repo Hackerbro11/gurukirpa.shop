@@ -1,0 +1,18 @@
+{
+  "restaurantName": "GURU KIRPA Fast Food",
+  "tagline": "Har Bite Me Hai Kirpa ❤️",
+  "subTagline": "Good Food • Good Mood • Good Life | Best Taste • Best Quality",
+  "phone": "6239591644",
+  "whatsappPhone": "916239591644",
+  "upiId": "6239591644@okbizaxis",
+  "upiName": "Guru Kirpa Fast Food",
+  "isPureVeg": true,
+  "isOpen": true,
+  "deliveryFee": 30,
+  "freeDeliveryAbove": 299,
+  "minOrderAmount": 50,
+  "adminPin": "8899",
+  "currency": "₹",
+  "address": "Main Market, Guru Kirpa Fast Food",
+  "notice": "Welcome to Guru Kirpa Fast Food! 100% Pure Veg & Freshly Made."
+}

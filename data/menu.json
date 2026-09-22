@@ -1,0 +1,355 @@
+[
+  {
+    "id": "ch-1",
+    "name": "Royal Malai Chaap (Special)",
+    "category": "Chaap",
+    "price": 150,
+    "description": "Updated signature creamy tandoori chaap loaded with royal dry fruits & malai.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=600&q=80",
+    "hasAddon": false
+  },
+  {
+    "id": "ch-2",
+    "name": "Masala Chaap",
+    "category": "Chaap",
+    "price": 130,
+    "description": "Spicy roasted soya chaap tossed with zesty onion-tomato gravy, capsicum & signature herbs.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "ch-3",
+    "name": "Punjabi Masala Chaap",
+    "category": "Chaap",
+    "price": 140,
+    "description": "Authentic Amritsari-style spicy tandoori chaap loaded with roasted spices and melted butter.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "ch-4",
+    "name": "Chilli Masala Chaap",
+    "category": "Chaap",
+    "price": 150,
+    "description": "Extra zesty fusion chaap tossed in high-flame wok with fresh green chillies and garlic pepper.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "ch-5",
+    "name": "Paneer Tikka",
+    "category": "Chaap",
+    "price": 160,
+    "description": "Succulent cubes of fresh paneer marinated in hung curd, Kashmiri chilli & char-grilled with capsicum.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "ch-6",
+    "name": "Malai Paneer Tikka",
+    "category": "Chaap",
+    "price": 170,
+    "description": "Melt-in-mouth cottage cheese marinated in cardamom, cashew cream & gentle royal herbs.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "bg-1",
+    "name": "Aloo Tikki Burger",
+    "category": "Burger",
+    "price": 50,
+    "description": "Crispy golden potato herb patty layered with creamy burger mayo, tomato, onion and crisp lettuce.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "bg-2",
+    "name": "Paneer Burger",
+    "category": "Burger",
+    "price": 80,
+    "description": "Thick spiced grilled paneer slab topped with tandoori spread and fresh crunchy veggies in a toasted bun.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "bg-3",
+    "name": "Cheese Burger",
+    "category": "Burger",
+    "price": 90,
+    "description": "Loaded with double cheese slices melting over a crispy vegetable patty with smoky garlic sauce.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "bg-4",
+    "name": "Chaap Burger",
+    "category": "Burger",
+    "price": 90,
+    "description": "Guru Kirpa special! Shredded spiced roasted chaap stuffed inside warm buns with mint mayo dressing.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "dr-1",
+    "name": "Mango Crush Shake",
+    "category": "Drink Crush",
+    "price": 70,
+    "description": "Chilled thick shake crafted from luscious Alphonso mango pulp. Thick, creamy and refreshing.",
+    "isVeg": true,
+    "inStock": true,
+    "hasAddon": true,
+    "image": "https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "dr-2",
+    "name": "Pineapple Crush Shake",
+    "category": "Drink Crush",
+    "price": 70,
+    "description": "Tangy sweet tropical pineapple bliss blended with chilled milk and crushed ice.",
+    "isVeg": true,
+    "inStock": true,
+    "hasAddon": true,
+    "image": "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "dr-3",
+    "name": "Black Currant Crush Shake",
+    "category": "Drink Crush",
+    "price": 70,
+    "description": "Vibrant berry crush shake packed with deep berry flavour and luscious purple goodness.",
+    "isVeg": true,
+    "inStock": true,
+    "hasAddon": true,
+    "image": "https://images.unsplash.com/photo-1570696516188-ade861b84a49?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "dr-4",
+    "name": "Kiwi Crush Shake",
+    "category": "Drink Crush",
+    "price": 70,
+    "description": "Zingy exotic kiwi fruit blend with a balanced sweet & tart finish.",
+    "isVeg": true,
+    "inStock": true,
+    "hasAddon": true,
+    "image": "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "dr-5",
+    "name": "Litchi Crush Shake",
+    "category": "Drink Crush",
+    "price": 70,
+    "description": "Delicate sweet floral litchi fruit pulp blended into a smooth soothing shake.",
+    "isVeg": true,
+    "inStock": true,
+    "hasAddon": true,
+    "image": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "dr-6",
+    "name": "Orange Crush Shake",
+    "category": "Drink Crush",
+    "price": 70,
+    "description": "Citrus sunshine splash blended with rich creaminess for an instant energy boost.",
+    "isVeg": true,
+    "inStock": true,
+    "hasAddon": true,
+    "image": "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "dr-7",
+    "name": "Green Apple Crush Shake",
+    "category": "Drink Crush",
+    "price": 70,
+    "description": "Crisp green apple flavour with invigorating sweet tangy punch.",
+    "isVeg": true,
+    "inStock": true,
+    "hasAddon": true,
+    "image": "https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "dr-8",
+    "name": "Guava Crush Shake",
+    "category": "Drink Crush",
+    "price": 70,
+    "description": "Ripe pink guava nectar essence with mild chaat sprinkle on top.",
+    "isVeg": true,
+    "inStock": true,
+    "hasAddon": true,
+    "image": "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "dr-9",
+    "name": "Muskmelon Crush Shake",
+    "category": "Drink Crush",
+    "price": 70,
+    "description": "Naturally fragrant sweet Kharbooza shake that cools the body.",
+    "isVeg": true,
+    "inStock": true,
+    "hasAddon": true,
+    "image": "https://images.unsplash.com/photo-1570696516188-ade861b84a49?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "dr-10",
+    "name": "Chickoo Crush Shake",
+    "category": "Drink Crush",
+    "price": 70,
+    "description": "Earthy sweet sapodilla (chickoo) caramel-like notes in dense chilled milk.",
+    "isVeg": true,
+    "inStock": true,
+    "hasAddon": true,
+    "image": "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "dr-11",
+    "name": "Cherry Crush Shake",
+    "category": "Drink Crush",
+    "price": 70,
+    "description": "Juicy red cherry crush loaded shake with velvety smooth texture.",
+    "isVeg": true,
+    "inStock": true,
+    "hasAddon": true,
+    "image": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "dr-12",
+    "name": "OREO Crush Shake",
+    "category": "Drink Crush",
+    "price": 80,
+    "description": "Crunchy chocolate Oreo cookies crushed and blended with rich vanilla cream and chocolate syrup drizzle.",
+    "isVeg": true,
+    "inStock": true,
+    "hasAddon": true,
+    "image": "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "ff-1",
+    "name": "Crispy Spring Roll",
+    "category": "Fast Food",
+    "price": 80,
+    "description": "Golden crisp pastry sheets rolled with shredded cabbage, carrots, capsicum and sweet chilli dip.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "ff-2",
+    "name": "Desi Masala Noodles",
+    "category": "Fast Food",
+    "price": 80,
+    "description": "Wok-tossed Hakka noodles with julienned vegetables, soy sauce, green chilli sauce and spicy seasonings.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "ff-3",
+    "name": "Cheese Roll",
+    "category": "Fast Food",
+    "price": 90,
+    "description": "Crispy fried wrap bursting with molten gooey cheese and mild herbs.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "ff-4",
+    "name": "Paneer Roll",
+    "category": "Fast Food",
+    "price": 100,
+    "description": "Flaky paratha wrap stuffed with roasted marinated paneer cubes, pickled onions and spicy mint chutney.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "ff-5",
+    "name": "Veg Potato Roll",
+    "category": "Fast Food",
+    "price": 70,
+    "description": "Homestyle spiced aloo filling wrapped in a warm crispy roll with tangy tamarind & mint sauces.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "ff-6",
+    "name": "Veg Cheese Potato Roll",
+    "category": "Fast Food",
+    "price": 90,
+    "description": "A comforting blend of savory mashed potato and gooey shredded cheese folded into a flaky wrap.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "pp-1",
+    "name": "Pani Puri (6 Pcs)",
+    "category": "Pani Puri",
+    "price": 30,
+    "description": "6 crispy puris served with tangy mint-coriander spicy water, sweet tamarind chutney & potato-chana mash.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "pp-2",
+    "name": "Pani Puri (12 Pcs)",
+    "category": "Pani Puri",
+    "price": 50,
+    "description": "12 crispy puris served with chilled hing-jeera teekha pani and sweet meetha chutney.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "pp-3",
+    "name": "Masala Puri (6 Pcs)",
+    "category": "Pani Puri",
+    "price": 40,
+    "description": "Crushed crunchy puris topped with warm spiced ragda/potato mix, fresh coriander, sev and zesty chutneys.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "pp-4",
+    "name": "Masala Puri (12 Pcs)",
+    "category": "Pani Puri",
+    "price": 70,
+    "description": "Family pack of 12 loaded Masala Puris with double crunchy sev, onions and sweet-sour chutneys.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "pp-5",
+    "name": "Dahi Puri (6 Pcs)",
+    "category": "Pani Puri",
+    "price": 50,
+    "description": "6 puffed puris filled with potatoes, topped with sweetened whipped curd, sev, and pomegranate seeds.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": "pp-6",
+    "name": "Dahi Puri (12 Pcs)",
+    "category": "Pani Puri",
+    "price": 90,
+    "description": "12 royal Dahi Puris drenched in thick creamy dahi, roasted cumin powder, chaat masala & nylon sev.",
+    "isVeg": true,
+    "inStock": true,
+    "image": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=500&q=80"
+  }
+]
