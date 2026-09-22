@@ -117,6 +117,95 @@ h1, h2, h3, h4, h5, .font-heading {
   transform: scale(1.15);
 }
 
+/* Flyer Golden Ribbon Badge (Like the flyer category banners) */
+.flyer-ribbon {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 50%, #B45309 100%);
+  color: #000;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Portion Toggle Pill Switches (Half vs Full) */
+.portion-toggle-container {
+  display: flex;
+  background: #18181B;
+  border: 1px solid #27272A;
+  border-radius: 12px;
+  padding: 3px;
+  gap: 3px;
+}
+.portion-toggle-btn {
+  flex: 1;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 9px;
+  text-align: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #9CA3AF;
+  border: 1px solid transparent;
+}
+.portion-toggle-btn:hover:not(.active) {
+  color: #F3F4F6;
+  background: #27272A;
+}
+.portion-toggle-btn.active {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  color: #000000;
+  font-weight: 900;
+  box-shadow: 0 2px 10px rgba(245, 158, 11, 0.4);
+  border-color: #FBBF24;
+}
+
+/* Official 100% Pure Veg Stamp (Matching Flyer) */
+.veg-stamp-flyer {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #10B981;
+  border-radius: 50%;
+  width: 72px;
+  height: 72px;
+  padding: 4px;
+  background: rgba(16, 185, 129, 0.06);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+  text-align: center;
+}
+.veg-stamp-flyer span {
+  font-size: 8px;
+  font-weight: 900;
+  color: #10B981;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+/* Chalkboard Luxury Gold Card Styling */
+.chalkboard-card {
+  background: linear-gradient(180deg, #18181C 0%, #0F0F12 100%);
+  border: 1px solid rgba(245, 158, 11, 0.15);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+.chalkboard-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+.chalkboard-card:hover::after {
+  border-color: rgba(245, 158, 11, 0.45);
+}
+
 /* Thermal Printer & Standard Invoice Styles */
 @media print {
   body * {
@@ -142,3 +231,4 @@ h1, h2, h3, h4, h5, .font-heading {
     display: none !important;
   }
 }
+

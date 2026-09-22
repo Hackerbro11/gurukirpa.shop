@@ -72,6 +72,14 @@ async function fetchMenu() {
   }
 }
 
+// State for interactive portion toggling (Half vs Full)
+let selectedPortions = {};
+
+function selectDishPortion(dishKey, portion) {
+  selectedPortions[dishKey] = portion;
+  renderMenu();
+}
+
 // Filter Categories
 function filterCategory(category) {
   activeCategory = category;
@@ -92,12 +100,13 @@ function filterCategory(category) {
   const titleElem = document.getElementById('current-category-title');
   if (titleElem) {
     const categoryNames = {
-      'all': 'All Menu Items',
-      'Chaap': 'Punjabi Chaap & Tikkas',
-      'Burger': 'Crispy Gourmet Burgers',
-      'Drink Crush': 'Drink Crush & Thick Shakes',
-      'Fast Food': 'Fast Food & Stuffed Rolls',
-      'Pani Puri': 'Pani Puri & Chaat Junction'
+      'all': 'All Menu Dishes',
+      'Chaap': '🍢 Punjabi Chaap & Tikkas',
+      'Burger': '🍔 Crispy Burgers',
+      'Drink Crush': '🥤 Drink Crush (12 Shakes)',
+      'Aloo Tikki': '🥔 Street-Style Aloo Tikki',
+      'Fast Food': '🌯 Fast Food & Stuffed Rolls',
+      'Momos': '🥟 Fresh Steamed & Fried Momos'
     };
     titleElem.firstElementChild.textContent = categoryNames[category] || category;
   }
@@ -111,7 +120,7 @@ function handleSearch() {
   renderMenu();
 }
 
-// Render Menu Cards
+// Render Menu Cards with Interactive Half / Full Portion Toggle
 function renderMenu() {
   const container = document.getElementById('menu-grid');
   if (!container) return;
@@ -125,53 +134,81 @@ function renderMenu() {
   if (searchQuery) {
     filtered = filtered.filter(item => 
       item.name.toLowerCase().includes(searchQuery) ||
+      (item.baseName && item.baseName.toLowerCase().includes(searchQuery)) ||
       (item.description && item.description.toLowerCase().includes(searchQuery)) ||
       item.category.toLowerCase().includes(searchQuery)
     );
   }
 
+  // Group items by dishKey so Half & Full portions share a single elegant card
+  const dishGroups = [];
+  const dishMap = new Map();
+
+  for (const item of filtered) {
+    const key = item.dishKey || item.id;
+    if (!dishMap.has(key)) {
+      const group = {
+        dishKey: key,
+        baseName: item.baseName || item.name.replace(/\s*\((Half|Full)\)/i, ''),
+        category: item.category,
+        description: item.description,
+        image: item.image,
+        isVeg: item.isVeg !== false,
+        hasAddon: !!item.hasAddon,
+        variants: []
+      };
+      dishMap.set(key, group);
+      dishGroups.push(group);
+    }
+    dishMap.get(key).variants.push(item);
+  }
+
   // Update items count badge
   const countBadge = document.getElementById('items-count-badge');
-  if (countBadge) countBadge.textContent = `${filtered.length} items`;
+  if (countBadge) countBadge.textContent = `${dishGroups.length} dishes (${filtered.length} options)`;
 
-  if (filtered.length === 0) {
+  if (dishGroups.length === 0) {
     container.innerHTML = `
       <div class="col-span-full py-16 text-center text-gray-500">
         <span class="text-4xl block mb-2">🍽️</span>
         <p class="font-bold text-gray-300">No items found matching "${searchQuery || activeCategory}"</p>
-        <p class="text-xs text-gray-500 mt-1">Try searching for chaap, burger or mango shake</p>
+        <p class="text-xs text-gray-500 mt-1">Try searching for chaap, momos, burger or shake</p>
       </div>
     `;
     return;
   }
 
-  container.innerHTML = filtered.map(item => {
-    const cartItem = cart.find(c => c.id === item.id);
+  container.innerHTML = dishGroups.map(dish => {
+    const hasVariants = dish.variants.length > 1;
+    const activePortion = selectedPortions[dish.dishKey] || (dish.variants[0].portion || 'Half');
+    const currentItem = dish.variants.find(v => v.portion === activePortion) || dish.variants[0];
+
+    const cartItem = cart.find(c => c.id === currentItem.id && !c.withIceCream);
     const inCartQty = cartItem ? cartItem.quantity : 0;
-    const isOutOfStock = item.inStock === false;
-    const isTopItem = item.id === 'ch-1' || item.id === 'bg-1' || item.id === 'dr-1' || item.id === 'dr-12' || item.id === 'pp-1' || item.id === 'ff-1';
+    const isOutOfStock = currentItem.inStock === false;
+    const isBestseller = dish.dishKey === 'ch-1' || dish.dishKey === 'bg-1' || dish.dishKey === 'mo-1' || dish.dishKey === 'dr-1' || dish.dishKey === 'at-1' || dish.dishKey === 'ff-1';
 
     return `
-      <div class="cool-food-card rounded-2xl overflow-hidden flex flex-col group ${isOutOfStock ? 'opacity-60 grayscale-[40%]' : ''}">
+      <div class="cool-food-card rounded-2xl overflow-hidden flex flex-col group ${isOutOfStock ? 'opacity-60 grayscale-[40%]' : ''} border border-zinc-800/80 hover:border-amber-500/50 transition duration-300 bg-[#121215]">
         
         <!-- Image & Badges -->
         <div class="relative h-48 w-full overflow-hidden bg-zinc-900">
-          <img src="${item.image}" alt="${item.name}" loading="lazy" class="w-full h-full object-cover group-hover:scale-108 transition duration-500">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+          <img src="${dish.image}" alt="${dish.baseName}" loading="lazy" class="w-full h-full object-cover group-hover:scale-108 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/25 to-transparent"></div>
           
           <!-- Category & Veg Badge -->
           <div class="absolute top-2.5 left-2.5 flex items-center space-x-1.5">
-            <span class="veg-icon bg-black/70 backdrop-blur-sm border-emerald-400" title="100% Pure Veg">
+            <span class="veg-icon bg-black/80 backdrop-blur-sm border-emerald-400" title="100% Pure Veg">
               <span class="veg-icon-dot bg-emerald-400"></span>
             </span>
-            <span class="bg-black/70 backdrop-blur-sm text-gray-200 text-[10px] font-semibold px-2 py-0.5 rounded-md border border-zinc-700">
-              ${item.category}
+            <span class="bg-black/80 backdrop-blur-sm text-gray-200 text-[10px] font-bold px-2 py-0.5 rounded-md border border-zinc-700">
+              ${dish.category}
             </span>
           </div>
 
           <!-- Top-Right Star Rating -->
           <div class="absolute top-2.5 right-2.5 flex items-center space-x-1">
-            <span class="bg-black/70 backdrop-blur-sm text-amber-400 font-extrabold text-[10px] px-2 py-0.5 rounded-full border border-amber-500/40 shadow flex items-center space-x-0.5">
+            <span class="bg-black/80 backdrop-blur-sm text-amber-400 font-black text-[10px] px-2 py-0.5 rounded-full border border-amber-500/40 shadow flex items-center space-x-0.5">
               <span>⭐</span>
               <span>4.9</span>
             </span>
@@ -180,25 +217,25 @@ function renderMenu() {
           <!-- Bottom Badges: Addon & Prep Time & Bestseller -->
           <div class="absolute bottom-2.5 inset-x-2.5 flex items-center justify-between">
             <div class="flex items-center space-x-1">
-              ${isTopItem ? `
+              ${isBestseller ? `
                 <span class="bestseller-badge text-white font-extrabold text-[9px] px-2 py-0.5 rounded shadow tracking-wide">
                   🔥 BESTSELLER
                 </span>
               ` : ''}
-              ${item.hasAddon ? `
+              ${dish.hasAddon ? `
                 <span class="bg-amber-500 text-black text-[9px] font-black px-1.5 py-0.5 rounded shadow">
-                  + Ice Cream
+                  + Ice Cream Available
                 </span>
               ` : ''}
             </div>
-            <span class="bg-black/70 backdrop-blur-sm text-gray-300 text-[9px] font-bold px-1.5 py-0.5 rounded border border-zinc-700">
-              ⏱️ 15m
+            <span class="bg-black/80 backdrop-blur-sm text-gray-300 text-[9px] font-bold px-1.5 py-0.5 rounded border border-zinc-700">
+              ⏱️ 12-15m
             </span>
           </div>
 
           ${isOutOfStock ? `
-            <div class="absolute inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center">
-              <span class="bg-red-600 text-white font-black text-xs px-3 py-1 rounded-full uppercase tracking-wider">
+            <div class="absolute inset-0 bg-black/85 backdrop-blur-sm flex items-center justify-center">
+              <span class="bg-red-600 text-white font-black text-xs px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
                 Sold Out
               </span>
             </div>
@@ -209,32 +246,44 @@ function renderMenu() {
         <div class="p-4 flex flex-col flex-grow justify-between space-y-3">
           <div>
             <div class="flex items-start justify-between gap-2">
-              <h4 class="font-extrabold text-base text-white group-hover:text-amber-400 transition">${item.name}</h4>
-              <span class="text-amber-400 font-black text-base whitespace-nowrap">₹${item.price}</span>
+              <h4 class="font-black text-base text-white group-hover:text-amber-400 transition leading-snug">${dish.baseName}</h4>
+              <span class="text-amber-400 font-black text-lg whitespace-nowrap">₹${currentItem.price}</span>
             </div>
-            <p class="text-xs text-gray-400 line-clamp-2 mt-1 leading-relaxed">${item.description || 'Delicious freshly made fast food delicacy.'}</p>
+            <p class="text-xs text-gray-400 line-clamp-2 mt-1 leading-relaxed">${dish.description || 'Freshly prepared vegetarian fast food.'}</p>
           </div>
+
+          <!-- Portion Selector (Half vs Full) for dishes with multiple sizes -->
+          ${hasVariants ? `
+            <div class="portion-toggle-container">
+              ${dish.variants.map(v => `
+                <button type="button" onclick="selectDishPortion('${dish.dishKey}', '${v.portion}')"
+                  class="portion-toggle-btn ${v.portion === currentItem.portion ? 'active' : ''}">
+                  ${v.portion} • ₹${v.price}
+                </button>
+              `).join('')}
+            </div>
+          ` : ''}
 
           <!-- Add to Cart / Quantity Actions -->
           <div class="pt-1">
             ${isOutOfStock ? `
-              <button disabled class="w-full py-2 rounded-xl bg-zinc-800 text-gray-500 text-xs font-bold cursor-not-allowed">
+              <button disabled class="w-full py-2.5 rounded-xl bg-zinc-800 text-gray-500 text-xs font-bold cursor-not-allowed">
                 Currently Unavailable
               </button>
             ` : inCartQty > 0 ? `
-              <div class="flex items-center justify-between bg-zinc-900 border border-amber-500/50 rounded-xl p-1 shadow-inner">
-                <button onclick="decrementCart('${item.id}')" class="w-8 h-8 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-amber-400 font-bold flex items-center justify-center transition">
+              <div class="flex items-center justify-between bg-zinc-900 border border-amber-500/60 rounded-xl p-1 shadow-inner">
+                <button onclick="decrementCart('${currentItem.id}')" class="w-8 h-8 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-amber-400 font-bold flex items-center justify-center transition">
                   -
                 </button>
-                <span class="font-bold text-white text-sm px-2">${inCartQty} in basket</span>
-                <button onclick="incrementCart('${item.id}')" class="w-8 h-8 rounded-lg bg-amber-500 hover:bg-amber-400 text-black font-extrabold flex items-center justify-center transition">
+                <span class="font-extrabold text-white text-xs px-2">${inCartQty} ${hasVariants ? `(${currentItem.portion})` : ''} in basket</span>
+                <button onclick="incrementCart('${currentItem.id}')" class="w-8 h-8 rounded-lg bg-amber-500 hover:bg-amber-400 text-black font-extrabold flex items-center justify-center transition">
                   +
                 </button>
               </div>
             ` : `
-              <button onclick="handleAddToCart('${item.id}')" class="w-full py-2.5 rounded-xl bg-zinc-900 hover:bg-amber-500 hover:text-black border border-zinc-700 hover:border-amber-500 text-amber-400 text-xs font-extrabold transition duration-200 flex items-center justify-center space-x-1.5 shadow-sm group-hover:border-amber-500/60">
+              <button onclick="handleAddToCart('${currentItem.id}')" class="w-full py-2.5 rounded-xl bg-zinc-900 hover:bg-amber-500 hover:text-black border border-zinc-700 hover:border-amber-500 text-amber-400 text-xs font-extrabold transition duration-200 flex items-center justify-center space-x-1.5 shadow-sm group-hover:border-amber-500/60">
                 <i data-lucide="plus" class="w-4 h-4"></i>
-                <span>Add to Basket</span>
+                <span>Add ${hasVariants ? `${currentItem.portion} (₹${currentItem.price})` : 'to Basket'}</span>
               </button>
             `}
           </div>
@@ -253,7 +302,7 @@ function handleAddToCart(itemId) {
   const item = menu.find(m => m.id === itemId);
   if (!item || !item.inStock) return;
 
-  // If item is a shake and hasAddon, ask if they want ice cream!
+  // If item is a shake and hasAddon, offer rich ice cream addon
   if (item.hasAddon) {
     promptAddon(item);
     return;
@@ -264,7 +313,7 @@ function handleAddToCart(itemId) {
 
 // Addon Prompt for Shakes
 function promptAddon(item) {
-  const wantIceCream = confirm(`Add a scoop of rich Ice Cream to your ${item.name} for only ₹20 extra? 🍦\n\nClick OK for (+Ice Cream) or Cancel for Regular Shake.`);
+  const wantIceCream = confirm(`Add a scoop of rich Ice Cream to your ${item.name} for only ₹20 extra? 🍦\n\n• Regular Shake: ₹60 (Click CANCEL)\n• With Ice Cream: ₹80 (Click OK)`);
   addToCart(item, wantIceCream);
 }
 
@@ -306,6 +355,30 @@ function decrementCart(itemId) {
       cart[itemIndex].quantity -= 1;
     } else {
       cart.splice(itemIndex, 1);
+    }
+    saveCart();
+    renderMenu();
+    updateCartUI();
+    playChime(400, 'sine', 0.08);
+  }
+}
+
+function incrementCartIndex(idx) {
+  if (cart[idx]) {
+    cart[idx].quantity += 1;
+    saveCart();
+    renderMenu();
+    updateCartUI();
+    playChime(800, 'sine', 0.08);
+  }
+}
+
+function decrementCartIndex(idx) {
+  if (cart[idx]) {
+    if (cart[idx].quantity > 1) {
+      cart[idx].quantity -= 1;
+    } else {
+      cart.splice(idx, 1);
     }
     saveCart();
     renderMenu();
@@ -415,11 +488,11 @@ function updateCartUI() {
         </div>
 
         <div class="flex items-center space-x-1.5 flex-shrink-0">
-          <button onclick="decrementCart('${item.id}')" class="w-7 h-7 rounded bg-zinc-800 hover:bg-zinc-700 text-amber-400 font-bold text-xs flex items-center justify-center">
+          <button onclick="decrementCartIndex(${idx})" class="w-7 h-7 rounded bg-zinc-800 hover:bg-zinc-700 text-amber-400 font-bold text-xs flex items-center justify-center">
             -
           </button>
           <span class="text-xs font-bold text-white px-1">${item.quantity}</span>
-          <button onclick="incrementCart('${item.id}')" class="w-7 h-7 rounded bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs flex items-center justify-center">
+          <button onclick="incrementCartIndex(${idx})" class="w-7 h-7 rounded bg-amber-500 hover:bg-amber-400 text-black font-extrabold text-xs flex items-center justify-center">
             +
           </button>
           <button onclick="removeFromCart(${idx})" class="w-7 h-7 rounded text-gray-500 hover:text-red-400 flex items-center justify-center ml-1">

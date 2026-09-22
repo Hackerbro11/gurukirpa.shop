@@ -38,69 +38,90 @@
 </head>
 <body class="bg-brand-dark text-gray-100 min-h-screen flex flex-col selection:bg-brand-gold selection:text-black">
 
-  <!-- Top Announcement Bar -->
-  <div class="bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 text-black text-xs sm:text-sm font-semibold py-1.5 px-4 text-center flex items-center justify-center space-x-2 shadow-sm">
-    <span>✨ 100% PURE VEG FAST FOOD</span>
-    <span class="hidden sm:inline">•</span>
-    <span class="hidden sm:inline">HAR BITE ME HAI KIRPA ❤️</span>
-    <span>•</span>
-    <span>Call/WhatsApp: <a href="tel:6239591644" class="underline font-bold">6239591644</a></span>
+  <!-- Top Announcement Bar (Flyer Header Theme) -->
+  <div class="bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 text-black text-xs sm:text-sm font-black py-1.5 px-4 text-center flex items-center justify-between shadow-md">
+    <span class="hidden md:inline text-[11px] tracking-wider uppercase">✨ GOOD FOOD • GOOD MOOD • GOOD LIFE</span>
+    <span class="mx-auto flex items-center space-x-2">
+      <span class="w-2 h-2 rounded-full bg-black animate-ping"></span>
+      <span class="tracking-wide">HAR BITE ME HAI KIRPA ❤️ • 100% PURE VEG</span>
+      <span class="font-normal">• Order: <a href="tel:6239591644" class="underline font-black">6239591644</a></span>
+    </span>
+    <span class="hidden md:inline text-[11px] tracking-wider uppercase">BEST TASTE ★ BEST QUALITY ✨</span>
   </div>
 
   <!-- Main Navbar -->
   <header class="sticky top-0 z-40 bg-brand-dark/95 backdrop-blur-md border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
-      <!-- Brand Logo -->
+      <!-- Brand Logo with Golden Khanda + Chef Hat Emblem -->
       <a href="/" class="flex items-center space-x-3 group">
-        <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-500 to-yellow-300 p-0.5 flex items-center justify-center shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
-          <div class="w-full h-full bg-brand-card rounded-[10px] flex items-center justify-center">
-            <span class="text-2xl">🍔</span>
+        <div class="w-13 h-13 rounded-2xl bg-gradient-to-tr from-amber-500 via-yellow-400 to-amber-600 p-0.5 flex items-center justify-center shadow-lg shadow-amber-500/25 group-hover:scale-105 transition-transform">
+          <div class="w-full h-full bg-zinc-950 rounded-[14px] flex items-center justify-center p-1.5">
+            <!-- Khanda + Chef Hat Gold Emblem SVG -->
+            <svg class="w-8 h-8 text-amber-400" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Chef Hat Crest Top -->
+              <path d="M16 16C13.5 16 12 14 12 11.5C12 8.5 15 7 18 8C19 5.5 22 4 25 4C28 4 30.5 5.5 31.5 8C34.5 7 37 8.5 37 11.5C37 14 35.5 16 33 16" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 16H33V19C33 19.5 32.5 20 32 20H17C16.5 20 16 19.5 16 19V16Z" fill="url(#goldGrad)"/>
+              <!-- Khanda Symbol / Center Dagger & Quoit Ring -->
+              <circle cx="24.5" cy="30.5" r="7.5" stroke="url(#goldGrad)" stroke-width="2.2"/>
+              <line x1="24.5" y1="21" x2="24.5" y2="44" stroke="url(#goldGrad)" stroke-width="2.8" stroke-linecap="round"/>
+              <!-- Curved Kirpan Blades -->
+              <path d="M15 25C13 30 14 37 20 41" stroke="url(#goldGrad)" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M34 25C36 30 35 37 29 41" stroke="url(#goldGrad)" stroke-width="2.2" stroke-linecap="round"/>
+              <defs>
+                <linearGradient id="goldGrad" x1="12" y1="4" x2="37" y2="44" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#FDE68A"/>
+                  <stop offset="0.5" stop-color="#F59E0B"/>
+                  <stop offset="1" stop-color="#D97706"/>
+                </linearGradient>
+              </defs>
+            </svg>
           </div>
         </div>
         <div>
           <div class="flex items-center space-x-2">
-            <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight gold-gradient-text">GURU KIRPA</h1>
+            <h1 class="text-xl sm:text-2xl font-black tracking-tight gold-gradient-text">GURU KIRPA</h1>
             <div class="veg-icon" title="100% Pure Vegetarian">
               <div class="veg-icon-dot"></div>
             </div>
           </div>
-          <p class="text-xs text-amber-400/80 font-medium">FAST FOOD • Har Bite Me Hai Kirpa</p>
+          <p class="text-xs text-amber-400 font-semibold tracking-wide">FAST FOOD • Har Bite Me Hai Kirpa ❤️</p>
         </div>
       </a>
 
       <!-- Right Actions -->
-      <div class="flex items-center space-x-2 sm:space-x-4">
+      <div class="flex items-center space-x-2 sm:space-x-3">
         
-        <!-- View Flyer Modal Trigger -->
-        <button onclick="openFlyerModal()" class="hidden md:flex items-center space-x-1 px-3 py-2 rounded-lg bg-zinc-800/80 hover:bg-zinc-700 text-xs font-medium text-amber-400 border border-zinc-700 transition">
-          <i data-lucide="image" class="w-4 h-4"></i>
-          <span>View Menu Flyer</span>
+        <!-- View Official Flyer Modal Trigger -->
+        <button onclick="openFlyerModal()" class="flex items-center space-x-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-amber-500/20 to-yellow-500/20 hover:from-amber-500/30 hover:to-yellow-500/30 text-xs font-bold text-amber-400 border border-amber-500/40 shadow transition">
+          <i data-lucide="file-text" class="w-4 h-4 text-amber-400"></i>
+          <span class="hidden sm:inline">Official Menu Card</span>
+          <span class="sm:hidden">Flyer</span>
         </button>
 
         <!-- Track Active Order -->
-        <button onclick="openTrackModal()" id="track-order-nav-btn" class="hidden sm:flex items-center space-x-1.5 px-3.5 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-xs font-semibold text-gray-200 border border-zinc-700 transition">
+        <button onclick="openTrackModal()" id="track-order-nav-btn" class="hidden sm:flex items-center space-x-1.5 px-3.5 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-xs font-bold text-gray-200 border border-zinc-700 transition">
           <i data-lucide="map-pin" class="w-4 h-4 text-amber-500"></i>
           <span>Track Order</span>
         </button>
 
         <!-- Delivery Partner / Rider App Link -->
-        <a href="/delivery" target="_blank" class="flex items-center space-x-1 px-3 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-xs text-emerald-400 hover:text-emerald-300 border border-zinc-800 transition">
+        <a href="/delivery" target="_blank" class="hidden sm:flex items-center space-x-1 px-3 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-xs text-emerald-400 hover:text-emerald-300 border border-zinc-800 transition font-semibold">
           <i data-lucide="bike" class="w-4 h-4 text-emerald-400"></i>
-          <span class="hidden sm:inline">Rider App</span>
+          <span>Rider App</span>
         </a>
 
         <!-- Admin Portal Link -->
-        <a href="/admin" target="_blank" class="flex items-center space-x-1 px-3 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-xs text-gray-400 hover:text-amber-400 border border-zinc-800 transition">
+        <a href="/admin" target="_blank" class="hidden sm:flex items-center space-x-1 px-3 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-xs text-gray-400 hover:text-amber-400 border border-zinc-800 transition font-semibold">
           <i data-lucide="shield" class="w-4 h-4 text-amber-500"></i>
-          <span class="hidden sm:inline">Kitchen Admin</span>
+          <span>Kitchen Admin</span>
         </a>
 
         <!-- Cart Button -->
-        <button onclick="toggleCartDrawer()" class="relative gold-glow-btn text-black font-bold px-4 py-2.5 rounded-xl flex items-center space-x-2">
+        <button onclick="toggleCartDrawer()" class="relative gold-glow-btn text-black font-extrabold px-4 py-2.5 rounded-xl flex items-center space-x-2">
           <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-          <span class="hidden sm:inline">Cart</span>
-          <span id="cart-total-nav" class="font-extrabold text-sm ml-1">₹0</span>
+          <span class="hidden sm:inline">Basket</span>
+          <span id="cart-total-nav" class="font-black text-sm ml-1">₹0</span>
           <span id="cart-count-badge" class="absolute -top-1.5 -right-1.5 bg-red-600 text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center ring-2 ring-brand-dark">0</span>
         </button>
       </div>
@@ -109,7 +130,7 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="relative overflow-hidden bg-gradient-to-b from-brand-card to-brand-dark border-b border-brand-border py-8 sm:py-12">
+  <section class="relative overflow-hidden bg-gradient-to-b from-[#141419] via-[#0F0F13] to-brand-dark border-b border-brand-border py-8 sm:py-12">
     <!-- Ambient glowing circle -->
     <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -119,78 +140,91 @@
         <!-- Left Content -->
         <div class="lg:col-span-7 space-y-4 text-center lg:text-left">
           
-          <div class="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/30 px-3.5 py-1.5 rounded-full text-xs font-semibold text-amber-400">
+          <div class="inline-flex items-center space-x-2 bg-amber-500/10 border border-amber-500/30 px-3.5 py-1.5 rounded-full text-xs font-bold text-amber-400">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-            <span>KITCHEN IS OPEN • TAKING ORDERS</span>
+            <span>BEST TASTE ★ BEST QUALITY • 100% PURE VEG</span>
           </div>
 
           <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
-            Delicious Bites, <br class="hidden sm:inline"/>
-            <span class="gold-gradient-text">Har Bite Me Kirpa!</span>
+            GURU KIRPA <br class="hidden sm:inline"/>
+            <span class="gold-gradient-text">FAST FOOD</span>
           </h2>
 
-          <p class="text-sm sm:text-base text-gray-400 max-w-xl mx-auto lg:mx-0">
-            Experience the finest Punjabi Chaap, Crispy Loaded Burgers, Chilled Shakes, Spicy Rolls, and Watery Tangy Pani Puri — 100% Pure Vegetarian with lightning fast doorstep delivery.
+          <p class="text-base sm:text-lg font-bold text-amber-300/90 italic">
+            "Har Bite Me Hai Kirpa ❤️"
+          </p>
+
+          <p class="text-xs sm:text-sm text-gray-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            Authentic Punjabi Chaap (Half & Full), Crispy Burgers, 12 Thick Fruit Shakes, Street-style Aloo & Band Tikki, Fast Food Rolls, and Fresh Steamed & Fried Momos!
           </p>
 
           <!-- Badges from Flyer -->
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 max-w-lg mx-auto lg:mx-0 text-left">
-            <div class="bg-zinc-900/80 border border-zinc-800 rounded-lg p-2.5 flex items-center space-x-2">
-              <span class="text-xl">🌿</span>
+            <div class="bg-zinc-900/90 border border-amber-500/20 rounded-xl p-2.5 flex items-center space-x-2.5 shadow">
+              <span class="text-2xl">🌿</span>
               <div>
-                <p class="text-[11px] font-bold text-gray-200">100% Pure Veg</p>
+                <p class="text-[11px] font-black text-emerald-400">100% Pure Veg</p>
                 <p class="text-[9px] text-gray-400">Guaranteed Fresh</p>
               </div>
             </div>
-            <div class="bg-zinc-900/80 border border-zinc-800 rounded-lg p-2.5 flex items-center space-x-2">
-              <span class="text-xl">⚡</span>
+            <div class="bg-zinc-900/90 border border-amber-500/20 rounded-xl p-2.5 flex items-center space-x-2.5 shadow">
+              <span class="text-2xl">🥟</span>
               <div>
-                <p class="text-[11px] font-bold text-gray-200">Fast Delivery</p>
-                <p class="text-[9px] text-gray-400">Hot & Fresh</p>
+                <p class="text-[11px] font-black text-amber-400">Momos Special</p>
+                <p class="text-[9px] text-gray-400">Steamed & Fried</p>
               </div>
             </div>
-            <div class="bg-zinc-900/80 border border-zinc-800 rounded-lg p-2.5 flex items-center space-x-2">
-              <span class="text-xl">✨</span>
+            <div class="bg-zinc-900/90 border border-amber-500/20 rounded-xl p-2.5 flex items-center space-x-2.5 shadow">
+              <span class="text-2xl">🍢</span>
               <div>
-                <p class="text-[11px] font-bold text-gray-200">Hygienic</p>
-                <p class="text-[9px] text-gray-400">Top Quality</p>
+                <p class="text-[11px] font-black text-amber-400">Half & Full</p>
+                <p class="text-[9px] text-gray-400">Chaap & Tikkas</p>
               </div>
             </div>
-            <div class="bg-zinc-900/80 border border-zinc-800 rounded-lg p-2.5 flex items-center space-x-2">
-              <span class="text-xl">🍦</span>
+            <div class="bg-zinc-900/90 border border-amber-500/20 rounded-xl p-2.5 flex items-center space-x-2.5 shadow">
+              <span class="text-2xl">🥤</span>
               <div>
-                <p class="text-[11px] font-bold text-gray-200">Ice Cream</p>
-                <p class="text-[9px] text-gray-400">Available All Shakes</p>
+                <p class="text-[11px] font-black text-amber-400">12 Shakes</p>
+                <p class="text-[9px] text-gray-400">+ Ice Cream ₹80</p>
               </div>
             </div>
           </div>
 
           <!-- Quick Actions -->
           <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-            <a href="#menu-section" class="gold-glow-btn text-black font-bold px-6 py-3 rounded-xl flex items-center space-x-2">
-              <span>Explore Menu</span>
+            <a href="#menu-section" class="gold-glow-btn text-black font-extrabold px-6 py-3 rounded-xl flex items-center space-x-2 shadow-lg">
+              <span>View Full Menu</span>
               <i data-lucide="arrow-down" class="w-4 h-4"></i>
             </a>
-            <a href="https://wa.me/916239591644?text=Hello%20Guru%20Kirpa%20Fast%20Food!%20I%20want%20to%20place%20an%20order." target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-5 py-3 rounded-xl flex items-center space-x-2 transition shadow-lg shadow-emerald-900/30">
+            <button onclick="openFlyerModal()" class="bg-zinc-900 hover:bg-zinc-800 text-amber-400 border border-amber-500/40 font-bold px-5 py-3 rounded-xl flex items-center space-x-2 transition shadow">
+              <i data-lucide="file-text" class="w-4 h-4 text-amber-400"></i>
+              <span>View Official Flyer</span>
+            </button>
+            <a href="https://wa.me/916239591644?text=Hello%20Guru%20Kirpa%20Fast%20Food!%20I%20want%20to%20place%20an%20order." target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-5 py-3 rounded-xl flex items-center space-x-2 transition shadow-lg shadow-emerald-900/30">
               <i data-lucide="message-circle" class="w-4 h-4"></i>
-              <span>WhatsApp Us</span>
+              <span>WhatsApp Order</span>
             </a>
           </div>
 
         </div>
 
-        <!-- Right Visual Poster Card -->
+        <!-- Right Visual Poster Card (Interactive Flyer) -->
         <div class="lg:col-span-5 flex justify-center">
           <div class="relative group cursor-pointer" onclick="openFlyerModal()">
             <div class="absolute -inset-1 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-2xl blur-lg opacity-40 group-hover:opacity-75 transition duration-500"></div>
-            <div class="relative bg-zinc-900 rounded-2xl overflow-hidden border border-amber-500/30 shadow-2xl max-w-xs sm:max-w-sm">
-              <img src="/assets/flyer.jpg" alt="Guru Kirpa Fast Food Flyer" class="w-full h-auto object-cover transform group-hover:scale-102 transition duration-300">
-              <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/80 to-transparent p-4 flex items-center justify-between">
+            <div class="relative bg-zinc-900 rounded-2xl overflow-hidden border-2 border-amber-500/50 shadow-2xl max-w-xs sm:max-w-sm">
+              <img src="/assets/menu-flyer.jpg" alt="Guru Kirpa Fast Food Official Menu Flyer" class="w-full h-auto object-cover transform group-hover:scale-102 transition duration-300">
+              <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/85 to-transparent p-4 flex items-center justify-between">
                 <div>
-                  <span class="text-xs font-bold text-amber-400 uppercase tracking-wide">Official Menu</span>
-                  <p class="text-xs text-gray-300">Click to expand flyer</p>
+                  <span class="text-xs font-black text-amber-400 uppercase tracking-wider flex items-center space-x-1">
+                    <span>📜 OFFICIAL MENU FLYER</span>
+                  </span>
+                  <p class="text-[11px] text-gray-300 font-medium">Click to expand & zoom</p>
                 </div>
-                <span class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 text-xs font-medium border border-amber-500/40">Zoom</span>
+                <span class="px-3 py-1 rounded-lg bg-amber-500 text-black text-xs font-extrabold shadow flex items-center space-x-1">
+                  <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i>
+                  <span>Zoom</span>
+                </span>
               </div>
             </div>
           </div>
@@ -200,36 +234,39 @@
     </div>
   </section>
 
-  <!-- Sticky Categories & Search Bar -->
-  <section id="menu-section" class="sticky top-20 z-30 bg-brand-dark/95 backdrop-blur-md border-b border-brand-border py-3 px-4 sm:px-6">
+  <!-- Sticky Categories & Search Bar (Matching 6 Flyer Categories) -->
+  <section id="menu-section" class="sticky top-20 z-30 bg-brand-dark/95 backdrop-blur-md border-b border-brand-border py-3 px-4 sm:px-6 shadow-md">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
       
       <!-- Category Pills -->
       <div class="flex items-center space-x-2 overflow-x-auto pb-1 sm:pb-0 no-scrollbar" id="category-pills">
-        <button onclick="filterCategory('all')" class="cat-pill active px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition bg-amber-500 text-black shadow-md">
-          🔥 All Items
+        <button onclick="filterCategory('all')" class="cat-pill active px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold whitespace-nowrap transition bg-amber-500 text-black shadow-md">
+          🔥 All Dishes (34)
         </button>
-        <button onclick="filterCategory('Chaap')" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition bg-zinc-900 hover:bg-zinc-800 text-gray-300 border border-zinc-800">
+        <button onclick="filterCategory('Chaap')" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition bg-zinc-900 hover:bg-zinc-800 text-gray-300 border border-zinc-800">
           🍢 Chaap & Tikka
         </button>
-        <button onclick="filterCategory('Burger')" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition bg-zinc-900 hover:bg-zinc-800 text-gray-300 border border-zinc-800">
-          🍔 Burgers
+        <button onclick="filterCategory('Burger')" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition bg-zinc-900 hover:bg-zinc-800 text-gray-300 border border-zinc-800">
+          🍔 Burger
         </button>
-        <button onclick="filterCategory('Drink Crush')" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition bg-zinc-900 hover:bg-zinc-800 text-gray-300 border border-zinc-800">
+        <button onclick="filterCategory('Drink Crush')" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition bg-zinc-900 hover:bg-zinc-800 text-gray-300 border border-zinc-800">
           🥤 Drink Crush (12 Shakes)
         </button>
-        <button onclick="filterCategory('Fast Food')" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition bg-zinc-900 hover:bg-zinc-800 text-gray-300 border border-zinc-800">
+        <button onclick="filterCategory('Aloo Tikki')" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition bg-zinc-900 hover:bg-zinc-800 text-gray-300 border border-zinc-800">
+          🥔 Aloo Tikki
+        </button>
+        <button onclick="filterCategory('Fast Food')" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition bg-zinc-900 hover:bg-zinc-800 text-gray-300 border border-zinc-800">
           🌯 Fast Food & Rolls
         </button>
-        <button onclick="filterCategory('Pani Puri')" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition bg-zinc-900 hover:bg-zinc-800 text-gray-300 border border-zinc-800">
-          🍲 Pani Puri & Chaat
+        <button onclick="filterCategory('Momos')" class="cat-pill px-4 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition bg-zinc-900 hover:bg-zinc-800 text-gray-300 border border-zinc-800">
+          🥟 Momos
         </button>
       </div>
 
       <!-- Search Box -->
       <div class="relative min-w-[240px]">
         <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
-        <input type="text" id="search-input" oninput="handleSearch()" placeholder="Search chaap, burger, shake..." class="w-full bg-zinc-900 border border-zinc-700 rounded-xl pl-9 pr-4 py-2 text-xs sm:text-sm text-gray-100 placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition">
+        <input type="text" id="search-input" oninput="handleSearch()" placeholder="Search chaap, burger, momos..." class="w-full bg-zinc-900 border border-zinc-700 rounded-xl pl-9 pr-4 py-2 text-xs sm:text-sm text-gray-100 placeholder-gray-500 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition">
       </div>
 
     </div>
@@ -693,31 +730,84 @@
     </div>
   </div>
 
-  <!-- Full Flyer Preview Modal -->
-  <div id="flyer-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200">
-    <div class="relative max-w-xl max-h-[90vh] overflow-auto bg-zinc-900 rounded-2xl border border-zinc-800 p-2 shadow-2xl">
-      <button onclick="closeFlyerModal()" class="absolute top-4 right-4 bg-black/80 hover:bg-black text-white p-2 rounded-full z-10">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
-      <img src="/assets/flyer.jpg" alt="Guru Kirpa Fast Food Flyer" class="w-full h-auto rounded-xl">
+  <!-- Full Flyer Preview Lightbox Modal -->
+  <div id="flyer-modal" class="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-6 opacity-0 pointer-events-none transition-opacity duration-200">
+    <div class="relative max-w-2xl w-full max-h-[95vh] overflow-y-auto bg-zinc-950 rounded-2xl border-2 border-amber-500/50 p-2 sm:p-4 shadow-2xl flex flex-col items-center">
+      <div class="w-full flex items-center justify-between pb-3 px-2 border-b border-zinc-800">
+        <div class="flex items-center space-x-2">
+          <span class="text-amber-400 font-black text-sm sm:text-base">📜 OFFICIAL MENU CARD</span>
+          <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-full">100% Pure Veg</span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <a href="/assets/menu-flyer.jpg" download="Guru-Kirpa-Menu-Flyer.jpg" class="px-3 py-1 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-amber-400 text-xs font-bold border border-zinc-700 flex items-center space-x-1">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            <span class="hidden sm:inline">Save Flyer</span>
+          </a>
+          <button onclick="closeFlyerModal()" class="bg-zinc-800 hover:bg-zinc-700 text-white p-1.5 rounded-xl border border-zinc-700">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+      <div class="p-2 w-full flex justify-center">
+        <img src="/assets/menu-flyer.jpg" alt="Guru Kirpa Fast Food Official Menu Flyer" class="w-full h-auto rounded-xl shadow-lg">
+      </div>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="bg-zinc-950 border-t border-brand-border py-8 mt-12 text-gray-400 text-xs">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+  <!-- Footer with Flyer Special Badges -->
+  <footer class="bg-zinc-950 border-t border-brand-border py-10 mt-12 text-gray-400 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
       
-      <div class="flex items-center space-x-3">
-        <span class="text-2xl">🍔</span>
-        <div>
-          <p class="font-bold text-white text-sm">GURU KIRPA FAST FOOD</p>
-          <p class="text-amber-400/80">Har Bite Me Hai Kirpa ❤️ • 100% Pure Veg</p>
+      <!-- Special Badges from Flyer -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 rounded-2xl bg-zinc-900/60 border border-amber-500/20">
+        <div class="flex items-center space-x-3">
+          <span class="text-2xl">🌱</span>
+          <div>
+            <p class="font-extrabold text-white text-xs">100% Pure Veg</p>
+            <p class="text-[10px] text-gray-400">Pure vegetarian kitchen</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-3">
+          <span class="text-2xl">🧼</span>
+          <div>
+            <p class="font-extrabold text-white text-xs">Fresh & Hygienic</p>
+            <p class="text-[10px] text-gray-400">Strict hygiene standards</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-3">
+          <span class="text-2xl">⭐</span>
+          <div>
+            <p class="font-extrabold text-white text-xs">Best Taste & Quality</p>
+            <p class="text-[10px] text-gray-400">Every single order</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-3">
+          <span class="text-2xl">🛵</span>
+          <div>
+            <p class="font-extrabold text-white text-xs">Fast Doorstep Delivery</p>
+            <p class="text-[10px] text-gray-400">Hot & fresh at your door</p>
+          </div>
         </div>
       </div>
 
-      <div class="text-center md:text-right space-y-1">
-        <p>Order Phone: <a href="tel:6239591644" class="text-amber-400 font-bold hover:underline">6239591644</a></p>
-        <p>Fresh & Hygienic Ingredients • Quality Food Every Time</p>
+      <!-- Footer Brand & Contact -->
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pt-4 border-t border-zinc-900">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500 text-black font-black flex items-center justify-center text-lg shadow">
+            GK
+          </div>
+          <div>
+            <p class="font-black text-white text-sm tracking-wide">GURU KIRPA FAST FOOD</p>
+            <p class="text-amber-400/90 font-medium text-xs">Har Bite Me Hai Kirpa ❤️ • 100% Pure Veg</p>
+          </div>
+        </div>
+
+        <div class="text-center md:text-right space-y-1">
+          <p class="text-white font-bold text-sm">
+            For Orders: <a href="tel:6239591644" class="text-amber-400 font-extrabold hover:underline">📞 6239591644</a>
+          </p>
+          <p class="text-gray-400">Website: <a href="https://gurukirpa.shop" target="_blank" class="text-gray-300 underline font-semibold">gurukirpa.shop</a> • Good Food, Good Mood, Good Life</p>
+        </div>
       </div>
 
     </div>
